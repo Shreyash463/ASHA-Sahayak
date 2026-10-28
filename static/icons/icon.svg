@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f766e" />
+      <stop offset="100%" stop-color="#0d9488" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000" flood-opacity="0.2" />
+    </filter>
+  </defs>
+  
+  <!-- App Icon Background Circle -->
+  <rect width="512" height="512" rx="112" fill="url(#grad)" />
+  
+  <!-- Decorative Ring -->
+  <circle cx="256" cy="256" r="190" fill="none" stroke="#ffffff" stroke-width="6" stroke-opacity="0.25" stroke-dasharray="16 10" />
+
+  <!-- Medical Cross / Shield Base -->
+  <g filter="url(#shadow)">
+    <!-- White Medical Cross -->
+    <path d="M 220 120 L 292 120 A 12 12 0 0 1 304 132 L 304 220 L 392 220 A 12 12 0 0 1 404 232 L 404 280 A 12 12 0 0 1 392 292 L 304 292 L 304 380 A 12 12 0 0 1 292 392 L 220 392 A 12 12 0 0 1 208 380 L 208 292 L 120 292 A 12 12 0 0 1 108 280 L 108 232 A 12 12 0 0 1 120 220 L 208 220 L 208 132 A 12 12 0 0 1 220 120 Z" fill="#ffffff" />
+    
+    <!-- Central Heart Motif -->
+    <path d="M 256 220 C 246 200, 216 200, 216 226 C 216 250, 256 278, 256 278 C 256 278, 296 250, 296 226 C 296 200, 266 200, 256 220 Z" fill="#e11d48" />
+  </g>
+</svg>

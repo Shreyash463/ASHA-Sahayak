@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: asha-sahayak
+    env: python
+    region: singapore
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /healthz
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_MODEL
+        value: gemini-2.5-flash
+      - key: ANM_PHONE_NUMBER
+        value: "+919876543210"
+      - key: STORAGE_BACKEND
+        value: sqlite
+      - key: CLUSTER_ALERT_THRESHOLD_COUNT
+        value: "5"
+      - key: CLUSTER_ALERT_DAYS
+        value: "3"
