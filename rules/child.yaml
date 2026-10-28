@@ -1,0 +1,255 @@
+module: child
+target_group:
+  en: "Child (2 months to 5 years)"
+  hi: "बच्चा (2 महीने से 5 वर्ष)"
+  mr: "लहान मूल (२ महिने ते ५ वर्षे)"
+age_range_months: [2, 59]
+
+signs:
+  - id: ch_unable_to_drink
+    module: child
+    level: URGENT
+    source: "IMNCI Chart Booklet Page 2 General Danger Signs"
+    verified: true
+    question:
+      en: "Is the child unable to drink or breastfeed at all?"
+      hi: "क्या बच्चा कुछ भी पीने या स्तनपान करने में बिल्कुल असमर्थ है?"
+      mr: "मूल काहीही पिऊ शकत नाही किंवा स्तनपान अजिबात करू शकत नाही का?"
+    why_it_matters:
+      en: "Inability to drink is an IMNCI general danger sign indicating extreme prostration, severe septicemia, or metabolic collapse."
+      hi: "कुछ भी न पी पाना गंभीर बीमारी का प्रमुख आपातकालीन संकेत है।"
+      mr: "काहीही न पिणे हे गंभीर संसर्ग किंवा आजाराचे तातडीचे धोक्याचे लक्षण आहे."
+
+  - id: ch_vomits_everything
+    module: child
+    level: URGENT
+    source: "IMNCI Chart Booklet Page 2 General Danger Signs"
+    verified: true
+    question:
+      en: "Does the child vomit everything (cannot keep anything down)?"
+      hi: "क्या बच्चा जो कुछ भी खाता-पीता है, सब तुरंत उल्टी कर देता है?"
+      mr: "मूल जे काही खाते-पिते ते सर्व लगेच उलटी करून बाहेर टाकते का?"
+    why_it_matters:
+      en: "Persistent vomiting prevents oral hydration and medication, leading to rapid shock and hypoglycemia."
+      hi: "लगातार उल्टी से बच्चे में गंभीर निर्जलीकरण (डिहाइड्रेशन) और बेहोशी का खतरा होता है।"
+      mr: "सतत उलटी झाल्यामुळे शरीरातील पाणी वेगाने कमी होऊन मूल बेशुद्ध पडू शकते."
+
+  - id: ch_convulsions
+    module: child
+    level: URGENT
+    source: "IMNCI Chart Booklet Page 2 General Danger Signs"
+    verified: true
+    question:
+      en: "Has the child had convulsions, seizures, or fits during this illness?"
+      hi: "क्या इस बीमारी के दौरान बच्चे को दौरे, झटके या ऐंठन आई है?"
+      mr: "या आजारपणात मुलाला झटके, आकडी किंवा अंगात ताठरपणा आला आहे का?"
+    why_it_matters:
+      en: "Seizures suggest acute central nervous system infection (meningitis/encephalitis), cerebral malaria, or severe febrile crisis."
+      hi: "दौरे मस्तिष्क ज्वर (मेनिंजाइटिस) या सेरेब्रल मलेरिया का संकेत हो सकते हैं।"
+      mr: "झटके येणे हे मेंदूज्वर किंवा मेंदूचा गंभीर संसर्ग असू शकतो; तत्काळ रुग्णालयात नेणे आवश्यक आहे."
+
+  - id: ch_lethargic_unconscious
+    module: child
+    level: URGENT
+    source: "IMNCI Chart Booklet Page 2 General Danger Signs"
+    verified: true
+    question:
+      en: "Is the child lethargic, abnormally drowsy, floppy, or difficult to awaken / unconscious?"
+      hi: "क्या बच्चा बहुत सुस्त, अर्धबेहोश, बेसुध है या जगाने में बहुत कठिनाई हो रही है?"
+      mr: "मूल खूप सुस्त, ग्लानीत, निपचित पडलेले आहे किंवा हाक मारूनही जागे होत नाही का?"
+    why_it_matters:
+      en: "Altered sensorium signals severe shock, cerebral hypoxia, or systemic toxemia requiring immediate resuscitation."
+      hi: "बेसुध होना शरीर में ऑक्सीजन की कमी और गंभीर संक्रमण का आपातकालीन संकेत है।"
+      mr: "मूल सुस्त किंवा बेशुद्ध असणे म्हणजे शरीरात गंभीर विषबाधा किंवा संसर्ग झाला आहे."
+
+  - id: ch_chest_indrawing_stridor
+    module: child
+    level: URGENT
+    source: "IMNCI Chart Booklet Page 4 Cough or Difficult Breathing"
+    verified: true
+    question:
+      en: "Does the child have chest indrawing (lower chest sucks in when breathing) or harsh stridor sound when calm?"
+      hi: "क्या बच्चे की छाती अंदर धंस रही है या शांत होने पर भी सांस में घरघराहट/सीटी जैसी तीखी आवाज (स्ट्राइडर) आ रही है?"
+      mr: "श्वास घेताना मुलाची छाती खोल आत खेचली जात आहे किंवा शांत असतानाही छातीतून कर्कश घरघर (स्ट्रायडर) आवाज येतो का?"
+    why_it_matters:
+      en: "Severe chest indrawing or stridor in a calm child indicates severe pneumonia or acute upper airway obstruction."
+      hi: "छाती का धंसना और स्ट्राइडर गंभीर निमोनिया या सांस नली में रुकावट का आपातकालीन संकेत है।"
+      mr: "छाती आत खेचली जाणे हे गंभीर न्यूमोनिया किंवा श्वासनलिकेतील अडथळा दर्शवते; त्वरित ऑक्सिजन हवा."
+
+  - id: ch_severe_dehydration
+    module: child
+    level: URGENT
+    source: "IMNCI Chart Booklet Page 6 Diarrhoea and Dehydration Assessment"
+    verified: true
+    question:
+      en: "Does the child have severe dehydration (sunken eyes AND skin pinch on abdomen goes back very slowly > 2 seconds, or unable to drink)?"
+      hi: "क्या बच्चे में गंभीर निर्जलीकरण है (आँखें अंदर धंसी हुई और पेट की त्वचा चुटकी छोड़ने पर 2 सेकंड से ज्यादा समय में वापस जाए, या पी न सके)?"
+      mr: "मुलाच्या शरीरातील पाणी तीव्र कमी झाले आहे का (डोळे खोल गेले आहेत आणि पोटाच्या त्वचेची घडी २ सेकंदांपेक्षा जास्त वेळ तशीच राहते किंवा पाणी पिऊ शकत नाही)?"
+    why_it_matters:
+      en: "Severe dehydration causes hypovolemic circulatory collapse and acute renal failure within hours without IV fluids."
+      hi: "गंभीर डिहाइड्रेशन से कुछ ही घंटों में किडनी फेल और सदमा (शॉक) हो सकता है।"
+      mr: "पाणी तीव्र कमी झाल्याने मुलाचे अवयव निकामी होण्याचा धोका असतो; तत्काळ सलाईन लावणे आवश्यक आहे."
+
+  - id: ch_fever_over_7d_stiff_neck
+    module: child
+    level: URGENT
+    source: "IMNCI Chart Booklet Page 8 Fever Classification"
+    verified: true
+    question:
+      en: "Has fever lasted more than 7 days, or does the child have a stiff, painful neck when bending chin to chest?"
+      hi: "क्या बुखार 7 दिनों से अधिक से है, या बच्चे की गर्दन अकड़ी हुई/सख्त है (ठोड़ी छाती से नहीं छू पा रही)?"
+      mr: "ताप ७ दिवसांपेक्षा जास्त काळ टिकून आहे का, किंवा मुलाची मान ताठ झाली असून हनुवटी छातीला टेकवता येत नाही का?"
+    why_it_matters:
+      en: "Prolonged fever with neck stiffness is a classic presentation of acute pyogenic or tubercular meningitis."
+      hi: "गर्दन में अकड़न मेनिंजाइटिस (दिमागी बुखार) का मुख्य संकेत है।"
+      mr: "मान ताठ होणे हे मेंदूज्वराचे (मेनिंजायटिस) अत्यंत गंभीर लक्षण आहे."
+
+  - id: ch_swelling_feet_wasting
+    module: child
+    level: URGENT
+    source: "IMNCI Chart Booklet Page 12 Malnutrition and Anemia Assessment"
+    verified: true
+    question:
+      en: "Does the child have bilateral pitting edema (swelling of both feet) or severe visible wasting (skin and bones appearance)?"
+      hi: "क्या बच्चे के दोनों पैरों पर सूजन (दबाने पर गड्ढा पड़ना) है या अत्यधिक सूखापन/हड्डियां दिख रही हैं?"
+      mr: "मुलाच्या दोन्ही पायांवर सूज (दाबल्यास खड्डा पडणे) आहे किंवा अत्यंत तीव्र कुपोषण/हाडांचा सापळा झाला आहे का?"
+    why_it_matters:
+      en: "Edema of both feet indicates kwashiorkor or severe acute malnutrition (SAM) with high risk of metabolic heart failure."
+      hi: "दोनों पैरों में सूजन गंभीर तीव्र कुपोषण (SAM/क्वाशिओरकोर) दर्शाती है, जिसे तुरंत NRC रेफर करें।"
+      mr: "दोन्ही पायांवर सूज हे तीव्र कुपोषणाचे लक्षण असून पोषण पुनर्वसन केंद्रात (NRC) दाखल करावे."
+
+  - id: ch_fast_breathing
+    module: child
+    level: REFER
+    source: "IMNCI Chart Booklet Page 4 Fast Breathing Cutoffs"
+    verified: true
+    threshold:
+      type: "respiratory_rate_by_age"
+      bands:
+        - min_age_months: 2
+          max_age_months: 11
+          comparator: ">="
+          value: 50
+        - min_age_months: 12
+          max_age_months: 59
+          comparator: ">="
+          value: 40
+      unit: "breaths_per_minute"
+    question:
+      en: "Is the child breathing fast (>= 50 breaths/min for 2-11 months; >= 40 breaths/min for 12-59 months)?"
+      hi: "क्या बच्चा तेज़ सांस ले रहा है (2-11 महीने में 50 या अधिक; 12-59 महीने में 40 या अधिक प्रति मिनट)?"
+      mr: "मूल जलद श्वास घेत आहे का (२ ते ११ महिन्यांसाठी ५० किंवा अधिक; १२ ते ५९ महिन्यांसाठी ४० किंवा अधिक प्रति मिनिट)?"
+    why_it_matters:
+      en: "Fast breathing without danger signs indicates pneumonia requiring oral amoxicillin and medical evaluation at the PHC."
+      hi: "तेज़ सांस निमोनिया का संकेत है जिसके लिए प्राथमिक स्वास्थ्य केंद्र पर एंटीबायोटिक जरूरी है।"
+      mr: "जलद श्वास न्यूमोनियाचे लक्षण आहे; प्राथमिक आरोग्य केंद्रात तपासणी व औषधोपचार आवश्यक आहेत."
+
+  - id: ch_blood_in_stool
+    module: child
+    level: REFER
+    source: "IMNCI Chart Booklet Page 6 Dysentery Guidelines"
+    verified: true
+    question:
+      en: "Has there been visible red blood in the child's loose stools (dysentery)?"
+      hi: "क्या बच्चे के पतले दस्त में लाल खून आ रहा है (पेचिश/डिसेंट्री)?"
+      mr: "मुलाच्या जुलाबातून लाल रक्त पडत आहे का (आमांश/पेचिश)?"
+    why_it_matters:
+      en: "Blood in stool signifies invasive bacillary dysentery (Shigella) requiring targeted antibiotics at the PHC."
+      hi: "मल में खून शिगेला संक्रमण दर्शाता है, जिसके लिए विशेष एंटीबायोटिक की जरूरत होती है।"
+      mr: "शौचातून रक्त येणे हे आतड्यांचा संसर्ग दर्शवते; आरोग्य केंद्रातून योग्य औषध घ्यावे."
+
+  - id: ch_diarrhoea_over_14d
+    module: child
+    level: REFER
+    source: "IMNCI Chart Booklet Page 6 Persistent Diarrhoea"
+    verified: true
+    question:
+      en: "Has loose watery diarrhoea been continuing for 14 days or longer (persistent diarrhoea)?"
+      hi: "क्या बच्चे को 14 दिन या उससे अधिक समय से लगातार पतले दस्त हो रहे हैं?"
+      mr: "मुलाला १४ दिवस किंवा त्याहून अधिक काळ सतत पातळ जुलाब होत आहेत का?"
+    why_it_matters:
+      en: "Persistent diarrhea damages intestinal villi, inducing severe malabsorption, nutrient wasting, and electrolyte loss."
+      hi: "लंबे समय तक दस्त रहने से आंतें कमजोर होती हैं और कुपोषण तेजी से बढ़ता है।"
+      mr: "दीर्घकाळ जुलाब राहिल्याने कुपोषण वाढते; तज्ज्ञ डॉक्टरांकडून तपासणी आवश्यक आहे."
+
+  - id: ch_fever_2_to_7d
+    module: child
+    level: REFER
+    source: "IMNCI Chart Booklet Page 8 Fever Protocol"
+    verified: true
+    question:
+      en: "Has the child had fever for 2 to 7 days without urgent danger signs?"
+      hi: "क्या बच्चे को 2 से 7 दिनों से बुखार है?"
+      mr: "मुलाला २ ते ७ दिवसांपासून ताप येत आहे का?"
+    why_it_matters:
+      en: "Fever exceeding 48 hours requires malaria blood slide/RDT testing, urinary examination, and clinical review at the PHC."
+      hi: "दो दिन से अधिक बुखार में मलेरिया जांच और डॉक्टर से सलाह जरूरी है।"
+      mr: "२ दिवसांपेक्षा जास्त ताप असल्यास हिवताप/मलेरिया तपासणी व औषधोपचार आवश्यक आहेत."
+
+  - id: ch_some_dehydration
+    module: child
+    level: REFER
+    source: "IMNCI Chart Booklet Page 6 Some Dehydration"
+    verified: true
+    question:
+      en: "Is the child restless, irritable, thirsty (drinks eagerly), with slightly sunken eyes?"
+      hi: "क्या बच्चा चिड़चिड़ा, बेचैन है, बहुत प्यासा है (पानी झपटकर पीता है) और आँखें हल्की धंसी हैं?"
+      mr: "मूल चिडचिड करत आहे, खूप तहानलेले आहे (पाणी हावरटासारखे पिते) आणि डोळे थोडे खोल गेले आहेत का?"
+    why_it_matters:
+      en: "Early dehydration needs structured Oral Rehydration Salt (ORS) solution and Zinc therapy at the health post."
+      hi: "ओआरएस और जिंक देकर डिहाइड्रेशन को गंभीर होने से रोका जा सकता है।"
+      mr: "ओआरएस (ORS) आणि झिंक देऊन शरीरातील पाण्याची कमतरता भरून काढणे गरजेचे आहे."
+
+  - id: ch_ear_discharge
+    module: child
+    level: REFER
+    source: "IMNCI Chart Booklet Page 10 Ear Problem"
+    verified: true
+    question:
+      en: "Is pus draining from the child's ear, or does the child have acute ear pain?"
+      hi: "क्या बच्चे के कान से मवाद बह रहा है या कान में असहनीय दर्द है?"
+      mr: "मुलाच्या कानातून पू वाहत आहे किंवा कानात तीव्र वेदना होत आहेत का?"
+    why_it_matters:
+      en: "Otitis media can cause chronic hearing impairment or spread into mastoiditis without timely antimicrobial treatment."
+      hi: "कान का संक्रमण सुनने की क्षमता को प्रभावित कर सकता है, इसलिए डॉक्टर को दिखाएं।"
+      mr: "कानाचा संसर्ग वाढल्यास ऐकण्याच्या क्षमतेवर परिणाम होऊ शकतो; वेळेत औषधोपचार करावेत."
+
+home_care_advice:
+  en:
+    - "Increase fluids and ORS: Give extra fluids like ORS solution, rice water, lemon water, and clean drinking water after each loose stool."
+    - "Continue frequent feeding: Continue breastfeeding and give easily digestible soft foods (khichdi, mashed banana, curd). Do not withhold food."
+    - "Give Zinc tablets: Give Zinc dispersible tablet (10 mg for <6 months; 20 mg for 6 months to 5 years) once daily for 14 full days."
+    - "Fever management: Sponge child with lukewarm water (never cold water). Keep child in comfortable light clothing."
+    - "Monitor signs closely: Watch breathing pattern and hydration status daily."
+  hi:
+    - "तरल पदार्थ और ओआरएस दें: हर दस्त के बाद ओआरएस घोल, दाल का पानी, चावल का मांड और स्वच्छ पानी पिलाएं।"
+    - "खान-पान जारी रखें: स्तनपान जारी रखें और सुपाच्य नरम भोजन (खिचड़ी, मसला हुआ केला, दही) दें। खाना बिल्कुल बंद न करें।"
+    - "जिंक की गोली दें: जिंक की गोली (6 महीने से छोटे को 10 mg; 6 महीने से बड़े को 20 mg) पूरे 14 दिनों तक रोज एक बार दें।"
+    - "बुखार में देखभाल: गुनगुने पानी की पट्टी करें (बर्फ या ठंडे पानी से नहीं)। बच्चे को हल्के आरामदायक कपड़े पहनाएं।"
+    - "निगरानी रखें: सांस की गति और बच्चे के सक्रिय रहने पर नजर रखें।"
+  mr:
+    - "पातळ पदार्थ आणि ओआरएस (ORS) द्या: प्रत्येक जुलाबानंतर ओआरएसचे द्रावण, डाळीचे पाणी, तांदळाची पेज व स्वच्छ पाणी पाजा."
+    - "आहार चालू ठेवा: अंगावरचे दूध पाजणे सुरू ठेवा आणि पचनास हलका मऊ आहार (मऊ खिचडी, केळे, दही) द्या. जेवण बंद करू नका."
+    - "झिंक गोळी १४ दिवस नियमित द्या: झिंकची गोळी (६ महिन्यांपेक्षा लहान बाळाला १० मिग्रॅ; ६ महिने ते ५ वर्षांच्या मुलाला २० मिग्रॅ) सलग १४ दिवस द्या."
+    - "ताप आल्यास काळजी: कोमट पाण्याच्या पट्ट्यांनी अंग पुसा (थंड किंवा बर्फाचे पाणी वापरू नका). अंगावर हलके कपडे ठेवा."
+    - "लक्ष ठेवा: मुलाच्या श्वासाचा वेग आणि लघवी व्यवस्थित होते आहे ना यावर बारीक लक्ष ठेवा."
+
+warning_signs:
+  en:
+    - "Child becomes unable to drink or breastfeed"
+    - "Vomits repeatedly after every feed"
+    - "Fast breathing or chest indrawing develops"
+    - "Child becomes extremely lethargic or unresponsive"
+    - "Blood appears in loose stools or high fever develops"
+  hi:
+    - "बच्चा दूध या पानी पीने में असमर्थ हो जाए"
+    - "हर बार खाने-पीने के बाद तुरंत उल्टी कर दे"
+    - "सांस तेज़ चलने लगे या छाती अंदर धंसने लगे"
+    - "बच्चा बहुत सुस्त या बेहोश जैसा हो जाए"
+    - "दस्त में खून आने लगे या बहुत तेज़ बुखार हो"
+  mr:
+    - "मूल काहीही खाणे-पिणे बंद करते"
+    - "काहीही खाल्ले की लगेच उलटी होते"
+    - "श्वास जलद चालणे किंवा छाती आत ओढली जाणे सुरू होते"
+    - "मूल खूप सुस्त किंवा बेशुद्ध होते"
+    - "शौचातून रक्त पडणे किंवा तीव्र ताप येणे"

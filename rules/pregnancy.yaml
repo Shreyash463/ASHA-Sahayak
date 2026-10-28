@@ -1,0 +1,248 @@
+module: pregnancy
+target_group:
+  en: "Pregnancy and Postpartum Mother"
+  hi: "गर्भवती एवं प्रसूता महिला"
+  mr: "गर्भवती व बाळंत स्त्री"
+age_range_years: [15, 49]
+
+signs:
+  - id: preg_vaginal_bleed
+    module: pregnancy
+    level: URGENT
+    source: "NHM ASHA Module 6 Book 1 Section 2.1 & MoHFW Antenatal Danger Signs"
+    verified: true
+    question:
+      en: "Is there any vaginal bleeding or spotting during pregnancy or labor?"
+      hi: "क्या गर्भावस्था या प्रसव के दौरान योनि से रक्तस्राव या खून के धब्बे आ रहे हैं?"
+      mr: "गरोदरपणात किंवा बाळंतपणाच्या कळा सुरू असताना योनीतून रक्तस्त्राव किंवा रक्ताचे डाग दिसत आहेत का?"
+    why_it_matters:
+      en: "Antepartum bleeding may signal placenta previa or abruptio placentae, which can quickly cause fatal maternal shock or fetal death."
+      hi: "गर्भावस्था में रक्तस्राव प्लेसेंटा की गड़बड़ी (अपरा खिसकना) का संकेत है, जिससे माँ-बच्चे दोनों को खतरा हो सकता है।"
+      mr: "गरोदरपणात रक्तस्त्राव होणे हे वार खाली सरकल्याचे किंवा निसटल्याचे लक्षण असू शकते, ज्यामुळे माता व बाळाच्या जीवाला धोका निर्माण होतो."
+
+  - id: preg_convulsions_fits
+    module: pregnancy
+    level: URGENT
+    source: "NHM ASHA Module 6 Book 1 Section 2.2 & PMSMA Guidelines"
+    verified: true
+    question:
+      en: "Has the mother had convulsions, fits, or loss of consciousness?"
+      hi: "क्या गर्भवती महिला को दौरे, झटके या बेहोशी आई है?"
+      mr: "स्त्रीला झटके, आकडी किंवा चक्कर येऊन बेशुद्ध पडल्याचे झाले आहे का?"
+    why_it_matters:
+      en: "Convulsions indicate eclampsia, a critical emergency requiring immediate magnesium sulfate and facility delivery."
+      hi: "दौरे एक्लम्पसिया (गर्भावस्था में उच्च रक्तचाप के दौरे) का संकेत हैं, जिसमें तुरंत आपातकालीन इलाज की जरूरत होती है।"
+      mr: "झटके येणे हे गरोदरपणातील अत्यंत धोकादायक रक्तदाब वाढीचे (एक्लॅम्पसिया) लक्षण असून त्वरित इंजेक्शन व वैद्यकीय मदत हवी."
+
+  - id: preg_severe_headache_vision
+    module: pregnancy
+    level: URGENT
+    source: "MoHFW High Risk Pregnancy Guidelines Section 4"
+    verified: true
+    question:
+      en: "Is the mother suffering from severe persistent headache with blurred vision or spots before the eyes?"
+      hi: "क्या महिला को गंभीर सिरदर्द के साथ आँखों के सामने धुंधलापन या चमकते बिंदु दिख रहे हैं?"
+      mr: "तीव्र डोकेदुखी सोबत डोळ्यांसमोर अंधारी, धूसर दिसणे किंवा चमके दिसण्याचा त्रास होत आहे का?"
+    why_it_matters:
+      en: "These are impending signs of severe pre-eclampsia and cerebral edema, heralding fatal eclamptic fits."
+      hi: "तेज़ सिरदर्द और धुंधला दिखना प्री-एक्लैम्पसिया का गंभीर लक्षण है जिससे दौरे पड़ सकते हैं।"
+      mr: "तीव्र डोकेदुखी आणि धूसर दिसणे हे गंभीर प्री-एक्लॅम्पसियाचे लक्षण असून त्वरित रक्तदाब नियंत्रण आवश्यक आहे."
+
+  - id: preg_severe_abdominal_pain
+    module: pregnancy
+    level: URGENT
+    source: "NHM ASHA Module 6 Book 1 Section 2.3"
+    verified: true
+    question:
+      en: "Does she have severe, unbearable abdominal pain not like normal labor pains?"
+      hi: "क्या पेट में अत्यधिक तेज़, असहनीय दर्द हो रहा है जो सामान्य प्रसव पीड़ा जैसा नहीं है?"
+      mr: "पोटात असह्य तीव्र वेदना होत आहेत का, ज्या सामान्य कळांपेक्षा वेगळ्या व सतत आहेत?"
+    why_it_matters:
+      en: "Severe sudden abdominal pain can indicate uterine rupture, concealed placental abruption, or ectopic pregnancy."
+      hi: "तीव्र पेट दर्द गर्भाशय फटने या प्लेसेंटा अलग होने का संकेत हो सकता है।"
+      mr: "पोटात तीव्र असह्य वेदना होणे हे गर्भाशयाला इजा किंवा वार वेगळी होण्याचा धोका दर्शवते."
+
+  - id: preg_high_fever
+    module: pregnancy
+    level: URGENT
+    source: "MoHFW Antenatal Protocol Section 5"
+    verified: true
+    threshold:
+      type: "temperature_celsius"
+      comparator: ">="
+      value: 38.0
+      unit: "celsius"
+    question:
+      en: "Does she have high fever (38.0°C / 100.4°F or above) with chills, weakness, or shivering?"
+      hi: "क्या महिला को तेज़ बुखार (38.0°C या अधिक) के साथ कंपकंपी या अत्यधिक कमजोरी है?"
+      mr: "स्त्रीला खूप जास्त ताप (३८.०° से किंवा अधिक) सोबत थंडी वाजणे किंवा अत्यंत अशक्तपणा आहे का?"
+    why_it_matters:
+      en: "High fever in pregnancy may be caused by intrauterine infection (chorioamnionitis), severe malaria, or pyelonephritis."
+      hi: "गर्भावस्था में तेज़ बुखार गर्भाशय के संक्रमण या मलेरिया के कारण हो सकता है, जो समय से पहले प्रसव करा सकता है।"
+      mr: "गरोदरपणात तीव्र ताप गर्भाशयाच्या संसर्गामुळे किंवा मलेरियामुळे असू शकतो, ज्यामुळे अकाली प्रसूतीचा धोका असतो."
+
+  - id: preg_leaking_water
+    module: pregnancy
+    level: URGENT
+    source: "NHM ASHA Module 6 Book 1 Section 2.4 Premature Rupture of Membranes"
+    verified: true
+    question:
+      en: "Is there continuous leaking or gushing of watery fluid from the vagina before labor pains begin?"
+      hi: "क्या प्रसव पीड़ा शुरू होने से पहले ही योनि से पानी का रिसाव या बहाव हो रहा है?"
+      mr: "कळा सुरू होण्यापूर्वीच योनीतून सतत पाणी गळत आहे किंवा एकदम खूप पाणी सुटले आहे का?"
+    why_it_matters:
+      en: "Premature rupture of membranes exposes the fetus to life-threatening ascending infection and cord prolapse."
+      hi: "समय से पहले पानी की थैली फटने से गर्भस्थ शिशु में गंभीर संक्रमण और गर्भनाल दबने का खतरा होता है।"
+      mr: "कळा सुरू होण्यापूर्वी पाणी सुटल्यास बाळाला गर्भाशयात गंभीर संसर्ग आणि नाळ अडकण्याचा धोका असतो."
+
+  - id: preg_reduced_movements
+    module: pregnancy
+    level: URGENT
+    source: "MoHFW Antenatal Care Manual Fetal Well-being"
+    verified: true
+    question:
+      en: "Has the mother noticed a sudden decrease or complete absence of baby kicks/movements in the womb?"
+      hi: "क्या गर्भ में बच्चे की हलचल या लातें अचानक बहुत कम हो गई हैं या बिल्कुल महसूस नहीं हो रही हैं?"
+      mr: "पोटातील बाळाची हालचाल अचानक खूप कमी झाली आहे किंवा अजिबात जाणवत नाही का?"
+    why_it_matters:
+      en: "Decreased or absent fetal movements is a primary red flag for fetal distress, hypoxia, or imminent intrauterine fetal demise."
+      hi: "बच्चे की हलचल रुकना गर्भ में दम घुटने (फीटल डिस्ट्रेस) का अत्यंत गंभीर संकेत है।"
+      mr: "बाळाची हालचाल मंदावणे किंवा थांबणे हे गर्भातील बाळ धोक्यात असल्याचे तातडीचे लक्षण आहे."
+
+  - id: preg_swelling_face_hands
+    module: pregnancy
+    level: URGENT
+    source: "PMSMA High Risk Protocol Section 3"
+    verified: true
+    question:
+      en: "Is there sudden swelling of the face, eyelids, and hands, especially alongside a headache?"
+      hi: "क्या चेहरे, पलकों और हाथों पर अचानक सूजन आ गई है, विशेषकर सिरदर्द के साथ?"
+      mr: "चेहऱ्यावर, डोळ्यांच्या पापण्यांवर आणि हातांवर अचानक सूज आली आहे का, सोबत डोकेदुखी आहे का?"
+    why_it_matters:
+      en: "Facial and upper extremity edema is a key warning for pre-eclampsia and hypertensive encephalopathy."
+      hi: "चेहरे और हाथों पर सूजन उच्च रक्तचाप और प्री-एक्लैम्पसिया का मुख्य लक्षण है।"
+      mr: "चेहरा व हातांवर सूज येणे हे गरोदरपणातील गंभीर उच्च रक्तदाबाचे लक्षण आहे."
+
+  - id: preg_severe_breathlessness_pallor
+    module: pregnancy
+    level: URGENT
+    source: "MoHFW Severe Anemia Guidelines in Pregnancy"
+    verified: true
+    question:
+      en: "Is the mother severely breathless even at rest, or are her tongue and palms extremely pale (severe anemia)?"
+      hi: "क्या आराम करते समय भी सांस फूल रही है, या जीभ और हथेलियां बहुत अधिक सफेद/पीली पड़ गई हैं?"
+      mr: "बसल्या जागीही तीव्र धाप लागत आहे का, किंवा जीभ आणि तळहात अत्यंत पांढरे/फिकट पडले आहेत का?"
+    why_it_matters:
+      en: "Severe anemia with breathlessness can precipitate sudden high-output congestive heart failure during late pregnancy or labor."
+      hi: "गंभीर एनीमिया और सांस फूलना दिल की विफलता (हार्ट फेल्योर) का कारण बन सकता है।"
+      mr: "रक्ताची तीव्र कमतरता आणि धाप लागणे यामुळे हृदयविकाराचा झटका येण्याचा धोका असतो."
+
+  - id: preg_labour_over_12h
+    module: pregnancy
+    level: URGENT
+    source: "NHM ASHA Module 6 Book 1 Prolonged Labour Management"
+    verified: true
+    question:
+      en: "Have true labor pains been continuing for more than 12 hours without delivery?"
+      hi: "क्या प्रसव पीड़ा शुरू हुए 12 घंटे से अधिक का समय बीत चुका है और प्रसव नहीं हुआ है?"
+      mr: "बाळंतपणाच्या खऱ्या कळा सुरू होऊन १२ तासांपेक्षा जास्त वेळ झाला असून प्रसूती झालेली नाही का?"
+    why_it_matters:
+      en: "Prolonged labor causes maternal exhaustion, uterine rupture, postpartum hemorrhage, and fetal asphyxia."
+      hi: "12 घंटे से अधिक प्रसव पीड़ा माँ और शिशु दोनों के लिए जानलेवा हो सकती है।"
+      mr: "१२ तासांपेक्षा जास्त वेळ कळा चालणे बाळ व मातेसाठी अत्यंत धोकादायक असून तातडीने सिझेरियन/रुग्णालय हवे."
+
+  - id: preg_postpartum_heavy_bleed_fever
+    module: pregnancy
+    level: URGENT
+    source: "NHM ASHA Module 6 Book 1 Section 4 Postpartum Complications"
+    verified: true
+    question:
+      en: "After delivery, is the mother soaking 2 or more pads/cloths per hour, passing large blood clots, or having high fever with foul-smelling discharge?"
+      hi: "प्रसव के बाद क्या प्रति घंटे 2 से अधिक कपड़े/पैड भीग रहे हैं, बड़े थक्के आ रहे हैं, या दुर्गंधयुक्त स्राव के साथ बुखार है?"
+      mr: "बाळंतपणानंतर दर तासाला २ पेक्षा जास्त पॅड/कपडे भिजत आहेत, रक्ताच्या मोठ्या गुठळ्या पडत आहेत किंवा दुर्गंधीयुक्त स्राव व ताप आहे का?"
+    why_it_matters:
+      en: "Postpartum hemorrhage (PPH) is the leading cause of maternal mortality; foul discharge indicates puerperal sepsis."
+      hi: "प्रसवोत्तर अत्यधिक रक्तस्राव (PPH) मातृ मृत्यु का सबसे बड़ा कारण है। तुरंत अस्पताल ले जाएं।"
+      mr: "बाळंतपणानंतरचा अतिरक्तस्त्राव मातेच्या जीवाला तत्काळ धोका निर्माण करतो; त्वरित रुग्णवाहिकेतून दाखल करा."
+
+  - id: preg_mild_pallor
+    module: pregnancy
+    level: REFER
+    source: "MoHFW Anemia Mukt Bharat Protocol"
+    verified: true
+    question:
+      en: "Does she look mildly pale, feel easily fatigued, or get tired quickly on light exertion?"
+      hi: "क्या महिला थोड़ी पीली दिखती है या हल्का काम करने पर भी बहुत जल्दी थक जाती है?"
+      mr: "स्त्री थोडी फिकट दिसत आहे किंवा थोडे काम केल्यावरही खूप थकवा जाणवतो का?"
+    why_it_matters:
+      en: "Mild to moderate nutritional anemia must be confirmed with hemoglobin testing and treated with therapeutic IFA."
+      hi: "हल्के एनीमिया की समय पर जांच और आयरन की गोलियां देना आवश्यक है।"
+      mr: "ॲनिमिया (रक्तक्षय) वेळेत ओळखून प्राथमिक आरोग्य केंद्रात तपासणी व गोळ्या सुरू करणे गरजेचे आहे."
+
+  - id: preg_swelling_feet_only
+    module: pregnancy
+    level: REFER
+    source: "MoHFW Antenatal Care Guidelines"
+    verified: true
+    question:
+      en: "Does she have mild swelling in her feet or ankles only (which reduces after overnight rest)?"
+      hi: "क्या केवल पैरों या टखनों में हल्की सूजन है जो रात को आराम करने पर कम हो जाती है?"
+      mr: "फक्त पायांवर किंवा घोट्यांवर हलकी सूज आहे का, जी रात्री विश्रांती घेतल्यानंतर कमी होते?"
+    why_it_matters:
+      en: "Dependent ankle edema is often physiological, but blood pressure must be checked at the PHC to rule out pre-eclampsia."
+      hi: "पैरों की सामान्य सूजन भी हो सकती है, लेकिन बीपी चेक कराना जरूरी है।"
+      mr: "पायांवरची साधी सूज सामान्य असू शकते, पण बीपी तपासून घेण्यासाठी आरोग्य केंद्रात दाखवावे."
+
+  - id: preg_missed_anc_ifa
+    module: pregnancy
+    level: REFER
+    source: "Pradhan Mantri Surakshit Matritva Abhiyan (PMSMA)"
+    verified: true
+    question:
+      en: "Has she missed any routine antenatal check-up (ANC), TT/Td injections, or not taken Iron-Folic Acid tablets?"
+      hi: "क्या महिला ने नियमित प्रसवपूर्व जांच (ANC), टिटनेस का टीका छोड़ दिया है या आयरन-फोलिक एसिड की गोलियां नहीं ले रही हैं?"
+      mr: "नियमित गरोदरपण तपासणी (ANC), टीटी/टीडी लस चुकली आहे किंवा आयर्न-फॉलिक ॲसिडच्या गोळ्या घेतलेल्या नाहीत का?"
+    why_it_matters:
+      en: "Regular ANC checkups and IFA supplements prevent severe pregnancy complications, low birth weight, and maternal anemia."
+      hi: "नियमित जांच और पोषण सप्लीमेंट सुरक्षित प्रसव के लिए अत्यंत आवश्यक हैं।"
+      mr: "नियमित तपासणी आणि गोळ्यांमुळे गुंतागुंत टळते व बाळ निरोगी राहते."
+
+home_care_advice:
+  en:
+    - "Nutritious balanced diet: Eat one extra meal daily with green leafy vegetables, pulses, milk, and seasonal fruits."
+    - "Take IFA & Calcium daily: Swallow one Iron-Folic Acid tablet daily after lunch with water (not with tea/milk) and Calcium tablet at a separate time."
+    - "Rest & posture: Rest for at least 2 hours in the afternoon and sleep 8 hours at night, preferably on the left side to improve fetal blood flow."
+    - "Birth preparedness: Plan delivery at an accredited government hospital (PHC/RH/District Hospital). Keep emergency vehicle number (108/102) handy."
+    - "Avoid heavy labor: Do not lift heavy weights, avoid long rough road travel in late pregnancy."
+  hi:
+    - "पौष्टिक आहार: रोजाना एक अतिरिक्त पौष्टिक भोजन लें, जिसमें हरी पत्तेदार सब्जियां, दालें, दूध और मौसमी फल शामिल हों।"
+    - "आयरन और कैल्शियम लें: रोजाना दोपहर के भोजन के बाद पानी से एक आयरन-फोलिक एसिड गोली लें (चाय/दूध के साथ नहीं) और कैल्शियम अलग समय लें।"
+    - "आराम और मुद्रा: दोपहर में कम से कम 2 घंटे आराम करें और रात में 8 घंटे सोएं। बाईं करवट लेटना बच्चे के रक्त संचार के लिए उत्तम है।"
+    - "प्रसव की तैयारी: सरकारी अस्पताल (पीएचसी/सीएचसी) में संस्थागत प्रसव की तैयारी रखें। आपातकालीन एम्बुलेंस (108/102) नंबर पास रखें।"
+    - "भारी काम से बचें: भारी वजन न उठाएं और गर्भावस्था के अंतिम महीनों में उबड़-खाबड़ रास्तों पर यात्रा से बचें।"
+  mr:
+    - "सकस व सकस आहार: रोज एक वेळ जास्त जेवण घ्या; आहारात हिरव्या पालेभाज्या, डाळी, दूध, अंडी व फळांचा समावेश करा."
+    - "आयर्न व कॅल्शियम गोळ्या नियमित घ्या: दुपारच्या जेवणानंतर १ आयर्न गोळी पाण्यासोबत घ्या (चहा किंवा दुधासोबत घेऊ नका), कॅल्शियम वेगळ्या वेळी घ्या."
+    - "विश्रांती: दुपारी किमान २ तास विश्रांती घ्या व रात्री ८ तास झोप घ्या. डाव्या कुशीवर झोपल्याने पोटातील बाळाला चांगला रक्तपुरवठा होतो."
+    - "प्रसूती पूर्वतयारी: बाळंतपण सरकारी रुग्णालयातच (PHC/उपजिल्हा रुग्णालय) करण्याचे नियोजन करा. रुग्णवाहिकेचा (१०८ / १०२) नंबर तयार ठेवा."
+    - "कष्टाची कामे टाळा: जड ओझी उचलणे टाळा व गरोदरपणाच्या शेवटच्या महिन्यांत खडतर प्रवास करू नका."
+
+warning_signs:
+  en:
+    - "Any vaginal bleeding or spotting"
+    - "Severe headache, blurred vision, or convulsions"
+    - "Continuous watery leaking before labor"
+    - "Baby movements reduced or stopped"
+    - "Severe abdominal pain or high fever"
+  hi:
+    - "योनि से किसी भी प्रकार का रक्तस्राव"
+    - "तेज़ सिरदर्द, धुंधलापन या दौरे पड़ना"
+    - "प्रसव से पहले पानी छूटना"
+    - "बच्चे की हलचल कम होना या रुक जाना"
+    - "असहनीय पेट दर्द या तेज़ बुखार"
+  mr:
+    - "योनीतून रक्तस्त्राव किंवा रक्ताचे डाग दिसणे"
+    - "तीव्र डोकेदुखी, डोळ्यांसमोर अंधारी किंवा झटके येणे"
+    - "कळा सुरू होण्यापूर्वी पाणी सुटणे"
+    - "पोटातील बाळाची हालचाल मंदावणे किंवा थांबणे"
+    - "पोटात तीव्र असह्य वेदना किंवा जास्त ताप"

@@ -1,0 +1,37 @@
+# Virtual environment
+.venv/
+venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Secrets and credentials
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*service-account*.json
+firebase-credentials.json
+credentials.json
+
+# Database and state
+*.sqlite
+*.sqlite3
+*.db
+
+# OS / Editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Node / Playwright
+node_modules/
+test-results/
+playwright-report/

@@ -1,0 +1,701 @@
+[
+  {
+    "id": "VIG-NB-01",
+    "module": "newborn",
+    "age": 5,
+    "title": "Healthy Day 5 Newborn Home Visit",
+    "story": "A 5-day-old baby is feeding actively at the breast 10 times a day, crying strongly, warm to touch (36.8°C), breathing normally at 44 bpm. Umbilical stump is dry and clean.",
+    "answers": {
+      "nb_feeding_stop": false,
+      "nb_convulsions": false,
+      "nb_fast_breathing": false,
+      "nb_chest_indrawing": false,
+      "nb_temp_abnormal": false,
+      "nb_lethargic_unconscious": false,
+      "nb_umbilicus_red_pus": false,
+      "nb_skin_pustules": false,
+      "nb_jaundice_early_soles": false,
+      "nb_mild_jaundice_face": false,
+      "nb_sticky_eyes": false,
+      "nb_feeding_difficulty_weight": false
+    },
+    "measurements": {"respiratory_rate": 44, "temperature_celsius": 36.8},
+    "expected_level": "HOME_CARE",
+    "expected_triggered_signs": []
+  },
+  {
+    "id": "VIG-NB-02",
+    "module": "newborn",
+    "age": 12,
+    "title": "Newborn Stopped Sucking Milk",
+    "story": "A 12-day-old infant was vigorous yesterday but today is refusing the breast completely and has stopped sucking for over 8 hours.",
+    "answers": {
+      "nb_feeding_stop": true,
+      "nb_convulsions": false,
+      "nb_fast_breathing": false,
+      "nb_chest_indrawing": false,
+      "nb_temp_abnormal": false,
+      "nb_lethargic_unconscious": false,
+      "nb_umbilicus_red_pus": false,
+      "nb_skin_pustules": false,
+      "nb_jaundice_early_soles": false
+    },
+    "measurements": {"respiratory_rate": 46, "temperature_celsius": 36.6},
+    "expected_level": "URGENT_REFERRAL",
+    "expected_triggered_signs": ["nb_feeding_stop"]
+  },
+  {
+    "id": "VIG-NB-03",
+    "module": "newborn",
+    "age": 14,
+    "title": "Newborn Borderline Fast Breathing (62 bpm)",
+    "story": "A 14-day-old infant is observed calm. ASHA counts 62 breaths per minute using the timer. Lungs sound congested.",
+    "answers": {
+      "nb_feeding_stop": false,
+      "nb_convulsions": false,
+      "nb_fast_breathing": true,
+      "nb_chest_indrawing": false,
+      "nb_temp_abnormal": false,
+      "nb_lethargic_unconscious": false,
+      "nb_umbilicus_red_pus": false,
+      "nb_skin_pustules": false,
+      "nb_jaundice_early_soles": false
+    },
+    "measurements": {"respiratory_rate": 62, "temperature_celsius": 37.0},
+    "expected_level": "URGENT_REFERRAL",
+    "expected_triggered_signs": ["nb_fast_breathing"]
+  },
+  {
+    "id": "VIG-NB-04",
+    "module": "newborn",
+    "age": 8,
+    "title": "Newborn Normal Breathing (58 bpm)",
+    "story": "An 8-day-old infant has respiratory rate of 58 breaths per minute (just below the 60 cutoff). Feeds well, active.",
+    "answers": {
+      "nb_feeding_stop": false,
+      "nb_convulsions": false,
+      "nb_fast_breathing": false,
+      "nb_chest_indrawing": false,
+      "nb_temp_abnormal": false,
+      "nb_lethargic_unconscious": false,
+      "nb_umbilicus_red_pus": false,
+      "nb_skin_pustules": false,
+      "nb_jaundice_early_soles": false
+    },
+    "measurements": {"respiratory_rate": 58, "temperature_celsius": 36.7},
+    "expected_level": "HOME_CARE",
+    "expected_triggered_signs": []
+  },
+  {
+    "id": "VIG-NB-05",
+    "module": "newborn",
+    "age": 6,
+    "title": "Newborn Severe Subcostal Chest Indrawing",
+    "story": "A 6-day-old baby has lower chest wall deeply retracting with every breath. Grunting noise heard.",
+    "answers": {
+      "nb_feeding_stop": false,
+      "nb_chest_indrawing": true,
+      "nb_convulsions": false,
+      "nb_temp_abnormal": false
+    },
+    "measurements": {"respiratory_rate": 55, "temperature_celsius": 37.1},
+    "expected_level": "URGENT_REFERRAL",
+    "expected_triggered_signs": ["nb_chest_indrawing"]
+  },
+  {
+    "id": "VIG-NB-06",
+    "module": "newborn",
+    "age": 3,
+    "title": "Newborn Hypothermia (Cold to Touch, 35.1°C)",
+    "story": "A 3-day-old infant feels ice cold on abdomen and feet. Axillary temperature is 35.1°C (<35.5°C threshold).",
+    "answers": {
+      "nb_temp_abnormal": true,
+      "nb_feeding_stop": false
+    },
+    "measurements": {"temperature_celsius": 35.1},
+    "expected_level": "URGENT_REFERRAL",
+    "expected_triggered_signs": ["nb_temp_abnormal"]
+  },
+  {
+    "id": "VIG-NB-07",
+    "module": "newborn",
+    "age": 10,
+    "title": "Newborn High Fever (38.2°C)",
+    "story": "A 10-day-old infant feels hot to touch. Thermometer registers 38.2°C (>37.5°C threshold).",
+    "answers": {
+      "nb_temp_abnormal": true
+    },
+    "measurements": {"temperature_celsius": 38.2},
+    "expected_level": "URGENT_REFERRAL",
+    "expected_triggered_signs": ["nb_temp_abnormal"]
+  },
+  {
+    "id": "VIG-NB-08",
+    "module": "newborn",
+    "age": 7,
+    "title": "Newborn Severe Omphalitis Spreading to Skin",
+    "story": "Umbilical stump has foul-smelling yellow pus and redness extending 2 cm onto the abdominal wall.",
+    "answers": {
+      "nb_umbilicus_red_pus": true
+    },
+    "measurements": {"respiratory_rate": 48, "temperature_celsius": 37.2},
+    "expected_level": "URGENT_REFERRAL",
+    "expected_triggered_signs": ["nb_umbilicus_red_pus"]
+  },
+  {
+    "id": "VIG-NB-09",
+    "module": "newborn",
+    "age": 1,
+    "title": "Newborn Early Jaundice on Day 1",
+    "story": "A 18-hour-old infant has yellow discoloration visible on face, chest, and palms within the first 24 hours.",
+    "answers": {
+      "nb_jaundice_early_soles": true
+    },
+    "measurements": {"temperature_celsius": 36.8},
+    "expected_level": "URGENT_REFERRAL",
+    "expected_triggered_signs": ["nb_jaundice_early_soles"]
+  },
+  {
+    "id": "VIG-NB-10",
+    "module": "newborn",
+    "age": 5,
+    "title": "Newborn Mild Jaundice on Face Only (Day 5)",
+    "story": "A 5-day-old infant has slight yellow sclera and nose. Abdomen, palms, and soles are pink. Feeds vigorously.",
+    "answers": {
+      "nb_jaundice_early_soles": false,
+      "nb_mild_jaundice_face": true
+    },
+    "measurements": {"temperature_celsius": 36.7},
+    "expected_level": "VISIT_PHC",
+    "expected_triggered_signs": ["nb_mild_jaundice_face"]
+  },
+  {
+    "id": "VIG-NB-11",
+    "module": "newborn",
+    "age": 16,
+    "title": "Newborn Sticky Eye Discharge",
+    "story": "A 16-day-old infant has yellowish sticky discharge from the right eye. No swollen lids or fever.",
+    "answers": {
+      "nb_sticky_eyes": true
+    },
+    "measurements": {"temperature_celsius": 36.6},
+    "expected_level": "VISIT_PHC",
+    "expected_triggered_signs": ["nb_sticky_eyes"]
+  },
+  {
+    "id": "VIG-NB-12",
+    "module": "newborn",
+    "age": 4,
+    "title": "Uncertainty on Convulsions / Twitching (Don't Know)",
+    "story": "Mother says baby had strange jerky movements during sleep. ASHA is unsure if it was a true convulsion.",
+    "answers": {
+      "nb_convulsions": "dont_know"
+    },
+    "measurements": {"temperature_celsius": 36.9},
+    "expected_level": "VISIT_PHC",
+    "expected_triggered_signs": []
+  },
+  {
+    "id": "VIG-NB-13",
+    "module": "newborn",
+    "age": 9,
+    "title": "Lactation Difficulty and Low Weight Concern",
+    "story": "Mother is struggling with sore nipples and baby slips off breast frequently. Baby birth weight was 2.1 kg.",
+    "answers": {
+      "nb_feeding_difficulty_weight": true
+    },
+    "measurements": {"temperature_celsius": 36.8},
+    "expected_level": "VISIT_PHC",
+    "expected_triggered_signs": ["nb_feeding_difficulty_weight"]
+  },
+
+  {
+    "id": "VIG-PREG-01",
+    "module": "pregnancy",
+    "age": 24,
+    "title": "Healthy 2nd Trimester Routine ANC Visit",
+    "story": "A 24-year-old in her 20th week of pregnancy. Normal appetite, taking daily IFA, fetal movements good, no headache or bleeding.",
+    "answers": {
+      "preg_vaginal_bleed": false,
+      "preg_convulsions_fits": false,
+      "preg_severe_headache_vision": false,
+      "preg_severe_abdominal_pain": false,
+      "preg_high_fever": false,
+      "preg_leaking_water": false,
+      "preg_reduced_movements": false,
+      "preg_swelling_face_hands": false,
+      "preg_severe_breathlessness_pallor": false,
+      "preg_labour_over_12h": false,
+      "preg_postpartum_heavy_bleed_fever": false,
+      "preg_mild_pallor": false,
+      "preg_swelling_feet_only": false,
+      "preg_missed_anc_ifa": false
+    },
+    "expected_level": "HOME_CARE",
+    "expected_triggered_signs": []
+  },
+  {
+    "id": "VIG-PREG-02",
+    "module": "pregnancy",
+    "age": 28,
+    "title": "Antepartum Vaginal Bleeding at 32 Weeks",
+    "story": "A 28-year-old at 32 weeks reports fresh red vaginal bleeding soaking her clothes without pain.",
+    "answers": {
+      "preg_vaginal_bleed": true
+    },
+    "expected_level": "URGENT_REFERRAL",
+    "expected_triggered_signs": ["preg_vaginal_bleed"]
+  },
+  {
+    "id": "VIG-PREG-03",
+    "module": "pregnancy",
+    "age": 22,
+    "title": "Severe Headache with Blurred Vision (Pre-eclampsia)",
+    "story": "A primigravida at 34 weeks has an excruciating frontal headache and sees flashing spots.",
+    "answers": {
+      "preg_severe_headache_vision": true
+    },
+    "expected_level": "URGENT_REFERRAL",
+    "expected_triggered_signs": ["preg_severe_headache_vision"]
+  },
+  {
+    "id": "VIG-PREG-04",
+    "module": "pregnancy",
+    "age": 25,
+    "title": "Convulsions in Third Trimester (Eclampsia)",
+    "story": "A 25-year-old had a sudden generalized fit with foaming at the mouth and unconsciousness for 5 minutes.",
+    "answers": {
+      "preg_convulsions_fits": true
+    },
+    "expected_level": "URGENT_REFERRAL",
+    "expected_triggered_signs": ["preg_convulsions_fits"]
+  },
+  {
+    "id": "VIG-PREG-05",
+    "module": "pregnancy",
+    "age": 30,
+    "title": "Premature Rupture of Membranes (PROM)",
+    "story": "At 35 weeks, mother experienced a sudden gush of clear fluid trickling continuously down her legs before labor.",
+    "answers": {
+      "preg_leaking_water": true
+    },
+    "expected_level": "URGENT_REFERRAL",
+    "expected_triggered_signs": ["preg_leaking_water"]
+  },
+  {
+    "id": "VIG-PREG-06",
+    "module": "pregnancy",
+    "age": 26,
+    "title": "Absent Fetal Movements at 36 Weeks",
+    "story": "Mother has felt zero fetal kicks or movement for the past 14 hours despite having meals and cold water.",
+    "answers": {
+      "preg_reduced_movements": true
+    },
+    "expected_level": "URGENT_REFERRAL",
+    "expected_triggered_signs": ["preg_reduced_movements"]
+  },
+  {
+    "id": "VIG-PREG-07",
+    "module": "pregnancy",
+    "age": 21,
+    "title": "Prolonged Active Labor (> 14 Hours)",
+    "story": "Labor pains began at 4 AM. It is now 7 PM (15 hours later) and the woman is exhausted without delivery.",
+    "answers": {
+      "preg_labour_over_12h": true
+    },
+    "expected_level": "URGENT_REFERRAL",
+    "expected_triggered_signs": ["preg_labour_over_12h"]
+  },
+  {
+    "id": "VIG-PREG-08",
+    "module": "pregnancy",
+    "age": 27,
+    "title": "Postpartum Hemorrhage (PPH on Day 2)",
+    "story": "Delivered at home 36 hours ago. Currently soaking 3 cloths per hour with large dark blood clots.",
+    "answers": {
+      "preg_postpartum_heavy_bleed_fever": true
+    },
+    "expected_level": "URGENT_REFERRAL",
+    "expected_triggered_signs": ["preg_postpartum_heavy_bleed_fever"]
+  },
+  {
+    "id": "VIG-PREG-09",
+    "module": "pregnancy",
+    "age": 29,
+    "title": "Severe Breathlessness at Rest and Pallor",
+    "story": "Woman at 30 weeks cannot lie flat on her bed due to severe breathlessness. Palms and tongue are chalky pale.",
+    "answers": {
+      "preg_severe_breathlessness_pallor": true
+    },
+    "expected_level": "URGENT_REFERRAL",
+    "expected_triggered_signs": ["preg_severe_breathlessness_pallor"]
+  },
+  {
+    "id": "VIG-PREG-10",
+    "module": "pregnancy",
+    "age": 23,
+    "title": "Mild Foot Swelling Only (Dependent Edema)",
+    "story": "Mother at 28 weeks has slight swelling around ankles after walking to the field, which goes away overnight.",
+    "answers": {
+      "preg_swelling_face_hands": false,
+      "preg_swelling_feet_only": true
+    },
+    "expected_level": "VISIT_PHC",
+    "expected_triggered_signs": ["preg_swelling_feet_only"]
+  },
+  {
+    "id": "VIG-PREG-11",
+    "module": "pregnancy",
+    "age": 20,
+    "title": "Mild Pallor and Fatigue",
+    "story": "Young pregnant mother looks slightly pale on conjunctiva and complains of tiring easily while cooking.",
+    "answers": {
+      "preg_mild_pallor": true
+    },
+    "expected_level": "VISIT_PHC",
+    "expected_triggered_signs": ["preg_mild_pallor"]
+  },
+  {
+    "id": "VIG-PREG-12",
+    "module": "pregnancy",
+    "age": 31,
+    "title": "Missed ANC Visits and Not Taking IFA Tablets",
+    "story": "Mother is in 6th month and has not attended any ANC clinic or taken tetanus toxoid or iron tablets.",
+    "answers": {
+      "preg_missed_anc_ifa": true
+    },
+    "expected_level": "VISIT_PHC",
+    "expected_triggered_signs": ["preg_missed_anc_ifa"]
+  },
+
+  {
+    "id": "VIG-CH-01",
+    "module": "child",
+    "age": 18,
+    "title": "Healthy Toddler with Mild Running Nose",
+    "story": "An 18-month-old has clear runny nose for 1 day. Eating khichdi happily, running around, breathing at 32 bpm.",
+    "answers": {
+      "ch_unable_to_drink": false,
+      "ch_vomits_everything": false,
+      "ch_convulsions": false,
+      "ch_lethargic_unconscious": false,
+      "ch_chest_indrawing_stridor": false,
+      "ch_severe_dehydration": false,
+      "ch_fever_over_7d_stiff_neck": false,
+      "ch_swelling_feet_wasting": false,
+      "ch_fast_breathing": false,
+      "ch_blood_in_stool": false,
+      "ch_diarrhoea_over_14d": false,
+      "ch_fever_2_to_7d": false,
+      "ch_some_dehydration": false,
+      "ch_ear_discharge": false
+    },
+    "measurements": {"respiratory_rate": 32, "temperature_celsius": 36.9},
+    "expected_level": "HOME_CARE",
+    "expected_triggered_signs": []
+  },
+  {
+    "id": "VIG-CH-02",
+    "module": "child",
+    "age": 9,
+    "title": "Child 9 Months Fast Breathing (52 bpm)",
+    "story": "A 9-month-old infant has respiratory rate of 52 bpm (threshold for 2-11m is >= 50). Drinks breastmilk.",
+    "answers": {
+      "ch_fast_breathing": true
+    },
+    "measurements": {"respiratory_rate": 52, "temperature_celsius": 37.4},
+    "expected_level": "VISIT_PHC",
+    "expected_triggered_signs": ["ch_fast_breathing"]
+  },
+  {
+    "id": "VIG-CH-03",
+    "module": "child",
+    "age": 9,
+    "title": "Child 9 Months Normal Breathing (48 bpm)",
+    "story": "A 9-month-old infant with cough has respiratory rate of 48 bpm (<50 threshold). Drinks normally.",
+    "answers": {
+      "ch_fast_breathing": false
+    },
+    "measurements": {"respiratory_rate": 48, "temperature_celsius": 37.1},
+    "expected_level": "HOME_CARE",
+    "expected_triggered_signs": []
+  },
+  {
+    "id": "VIG-CH-04",
+    "module": "child",
+    "age": 24,
+    "title": "Child 24 Months Fast Breathing (44 bpm)",
+    "story": "A 2-year-old child (24 months) has respiratory rate of 44 bpm (threshold for 12-59m is >= 40).",
+    "answers": {
+      "ch_fast_breathing": true
+    },
+    "measurements": {"respiratory_rate": 44, "temperature_celsius": 37.3},
+    "expected_level": "VISIT_PHC",
+    "expected_triggered_signs": ["ch_fast_breathing"]
+  },
+  {
+    "id": "VIG-CH-05",
+    "module": "child",
+    "age": 14,
+    "title": "Child Unable to Drink or Breastfeed",
+    "story": "A 14-month-old is extremely weak and cannot take water from a cup or suck at the breast at all.",
+    "answers": {
+      "ch_unable_to_drink": true
+    },
+    "expected_level": "URGENT_REFERRAL",
+    "expected_triggered_signs": ["ch_unable_to_drink"]
+  },
+  {
+    "id": "VIG-CH-06",
+    "module": "child",
+    "age": 11,
+    "title": "Child Vomiting Everything",
+    "story": "An 11-month-old has vomited after every spoon of water or breastfeed for the last 6 hours.",
+    "answers": {
+      "ch_vomits_everything": true
+    },
+    "expected_level": "URGENT_REFERRAL",
+    "expected_triggered_signs": ["ch_vomits_everything"]
+  },
+  {
+    "id": "VIG-CH-07",
+    "module": "child",
+    "age": 30,
+    "title": "Child with Generalized Convulsions",
+    "story": "A 2.5-year-old had sudden stiffening and jerking of arms and legs during a high fever spike.",
+    "answers": {
+      "ch_convulsions": true
+    },
+    "expected_level": "URGENT_REFERRAL",
+    "expected_triggered_signs": ["ch_convulsions"]
+  },
+  {
+    "id": "VIG-CH-08",
+    "module": "child",
+    "age": 7,
+    "title": "Child Chest Indrawing and Harsh Stridor",
+    "story": "A 7-month-old has subcostal indrawing and a high-pitched crowing stridor sound even while resting calmly.",
+    "answers": {
+      "ch_chest_indrawing_stridor": true
+    },
+    "expected_level": "URGENT_REFERRAL",
+    "expected_triggered_signs": ["ch_chest_indrawing_stridor"]
+  },
+  {
+    "id": "VIG-CH-09",
+    "module": "child",
+    "age": 15,
+    "title": "Severe Dehydration with Sunken Eyes & Slow Skin Pinch",
+    "story": "A 15-month-old with 8 watery stools today has deeply sunken eyes and skin pinch on abdomen takes > 3 seconds to flatten.",
+    "answers": {
+      "ch_severe_dehydration": true
+    },
+    "expected_level": "URGENT_REFERRAL",
+    "expected_triggered_signs": ["ch_severe_dehydration"]
+  },
+  {
+    "id": "VIG-CH-10",
+    "module": "child",
+    "age": 36,
+    "title": "Fever for 9 Days with Stiff Neck",
+    "story": "A 3-year-old has had persistent fever for 9 days and screams in pain when attempts are made to bend chin to chest.",
+    "answers": {
+      "ch_fever_over_7d_stiff_neck": true
+    },
+    "expected_level": "URGENT_REFERRAL",
+    "expected_triggered_signs": ["ch_fever_over_7d_stiff_neck"]
+  },
+  {
+    "id": "VIG-CH-11",
+    "module": "child",
+    "age": 28,
+    "title": "Bilateral Pitting Edema of Both Feet (Kwashiorkor)",
+    "story": "A 28-month-old has visible swelling of both feet leaving deep pit impressions on finger pressure.",
+    "answers": {
+      "ch_swelling_feet_wasting": true
+    },
+    "expected_level": "URGENT_REFERRAL",
+    "expected_triggered_signs": ["ch_swelling_feet_wasting"]
+  },
+  {
+    "id": "VIG-CH-12",
+    "module": "child",
+    "age": 16,
+    "title": "Blood in Stool (Dysentery)",
+    "story": "A 16-month-old passes small frequent stools containing bright red blood and mucus with straining.",
+    "answers": {
+      "ch_blood_in_stool": true
+    },
+    "expected_level": "VISIT_PHC",
+    "expected_triggered_signs": ["ch_blood_in_stool"]
+  },
+  {
+    "id": "VIG-CH-13",
+    "module": "child",
+    "age": 20,
+    "title": "Persistent Diarrhoea for 16 Days",
+    "story": "Child has had watery stools on and off for over 2 weeks without blood or severe dehydration.",
+    "answers": {
+      "ch_diarrhoea_over_14d": true
+    },
+    "expected_level": "VISIT_PHC",
+    "expected_triggered_signs": ["ch_diarrhoea_over_14d"]
+  },
+
+  {
+    "id": "VIG-AD-01",
+    "module": "adult",
+    "age": 35,
+    "title": "Adult Mild Seasonal Cough (3 Days)",
+    "story": "A 35-year-old farm worker has a dry tickly cough for 3 days after harvesting. No fever, no chest pain.",
+    "answers": {
+      "ad_difficulty_breathing_blue_lips": false,
+      "ad_confusion_stiff_neck": false,
+      "ad_chest_pain": false,
+      "ad_unable_fluids": false,
+      "ad_very_high_fever_weakness": false,
+      "ad_cough_2w": false,
+      "ad_blood_in_sputum": false,
+      "ad_fever_over_3d": false,
+      "ad_fever_chills_vector": false
+    },
+    "measurements": {"respiratory_rate": 18, "temperature_celsius": 36.8},
+    "expected_level": "HOME_CARE",
+    "expected_triggered_signs": []
+  },
+  {
+    "id": "VIG-AD-02",
+    "module": "adult",
+    "age": 52,
+    "title": "Severe Dyspnea and Cyanosis (Blue Lips)",
+    "story": "A 52-year-old is gasping for air with a respiratory rate of 34 breaths/min and distinctly bluish lips and nailbeds.",
+    "answers": {
+      "ad_difficulty_breathing_blue_lips": true
+    },
+    "measurements": {"respiratory_rate": 34},
+    "expected_level": "URGENT_REFERRAL",
+    "expected_triggered_signs": ["ad_difficulty_breathing_blue_lips"]
+  },
+  {
+    "id": "VIG-AD-03",
+    "module": "adult",
+    "age": 60,
+    "title": "Crushing Central Chest Pain Radiating to Left Arm",
+    "story": "A 60-year-old male has intense chest pressure and cold sweats lasting 45 minutes, spreading into his jaw.",
+    "answers": {
+      "ad_chest_pain": true
+    },
+    "expected_level": "URGENT_REFERRAL",
+    "expected_triggered_signs": ["ad_chest_pain"]
+  },
+  {
+    "id": "VIG-AD-04",
+    "module": "adult",
+    "age": 42,
+    "title": "Disorientation and Neck Stiffness with Fever",
+    "story": "A 42-year-old female is talking incoherently, does not recognize her family, and has a stiff rigid neck.",
+    "answers": {
+      "ad_confusion_stiff_neck": true
+    },
+    "expected_level": "URGENT_REFERRAL",
+    "expected_triggered_signs": ["ad_confusion_stiff_neck"]
+  },
+  {
+    "id": "VIG-AD-05",
+    "module": "adult",
+    "age": 29,
+    "title": "Intractable Vomiting and Prostration",
+    "story": "A 29-year-old has vomited over 12 times today and cannot keep even a single teaspoon of water down.",
+    "answers": {
+      "ad_unable_fluids": true
+    },
+    "expected_level": "URGENT_REFERRAL",
+    "expected_triggered_signs": ["ad_unable_fluids"]
+  },
+  {
+    "id": "VIG-AD-06",
+    "module": "adult",
+    "age": 48,
+    "title": "Hyperpyrexia (39.6°C) and Severe Prostration",
+    "story": "Temperature is 39.6°C. Patient is trembling violently and unable to sit up in bed.",
+    "answers": {
+      "ad_very_high_fever_weakness": true
+    },
+    "measurements": {"temperature_celsius": 39.6},
+    "expected_level": "URGENT_REFERRAL",
+    "expected_triggered_signs": ["ad_very_high_fever_weakness"]
+  },
+  {
+    "id": "VIG-AD-07",
+    "module": "adult",
+    "age": 55,
+    "title": "Chronic Productive Cough for 3 Weeks (Presumptive TB)",
+    "story": "A 55-year-old smoker has had a phlegmy cough for 22 days with mild afternoon warmth and weight loss.",
+    "answers": {
+      "ad_cough_2w": true
+    },
+    "expected_level": "VISIT_PHC",
+    "expected_triggered_signs": ["ad_cough_2w"]
+  },
+  {
+    "id": "VIG-AD-08",
+    "module": "adult",
+    "age": 40,
+    "title": "Hemoptysis (Blood in Coughed-up Sputum)",
+    "story": "A 40-year-old coughed up half a teaspoon of bright red blood mixed with phlegm this morning.",
+    "answers": {
+      "ad_blood_in_sputum": true
+    },
+    "expected_level": "VISIT_PHC",
+    "expected_triggered_signs": ["ad_blood_in_sputum"]
+  },
+  {
+    "id": "VIG-AD-09",
+    "module": "adult",
+    "age": 31,
+    "title": "Unexplained Fever Persisting for 5 Days",
+    "story": "A 31-year-old has continuous fever for 5 days without respiratory distress or vomiting.",
+    "answers": {
+      "ad_fever_over_3d": true
+    },
+    "expected_level": "VISIT_PHC",
+    "expected_triggered_signs": ["ad_fever_over_3d"]
+  },
+  {
+    "id": "VIG-AD-10",
+    "module": "adult",
+    "age": 27,
+    "title": "Fever with Shivering Chills in Malaria Season",
+    "story": "During post-monsoon season in Gadchiroli, patient has sudden rigors, severe headache, and joint pain.",
+    "answers": {
+      "ad_fever_chills_vector": true
+    },
+    "expected_level": "VISIT_PHC",
+    "expected_triggered_signs": ["ad_fever_chills_vector"]
+  },
+  {
+    "id": "VIG-AD-11",
+    "module": "adult",
+    "age": 38,
+    "title": "Borderline Fast Breathing in Adult (24 bpm)",
+    "story": "Patient with mild cold has respiratory rate of 24 bpm (below the >= 30 adult red-flag cutoff).",
+    "answers": {
+      "ad_difficulty_breathing_blue_lips": false
+    },
+    "measurements": {"respiratory_rate": 24, "temperature_celsius": 37.1},
+    "expected_level": "HOME_CARE",
+    "expected_triggered_signs": []
+  },
+  {
+    "id": "VIG-AD-12",
+    "module": "adult",
+    "age": 45,
+    "title": "Unknown on Chest Pain (ASHA uncertain)",
+    "story": "Patient mentions vague chest discomfort after heavy lifting. ASHA marks don't know on acute cardiac pain.",
+    "answers": {
+      "ad_chest_pain": "dont_know"
+    },
+    "expected_level": "VISIT_PHC",
+    "expected_triggered_signs": []
+  }
+]
