@@ -5,6 +5,7 @@ Mobile-first frontline clinical decision support tool for village health workers
 import os
 import uuid
 import time
+import urllib.parse
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Optional, Dict, Any
@@ -103,6 +104,41 @@ class SecurityAndRateLimitMiddleware(BaseHTTPMiddleware):
         return response
 
 
+class PathRewriteMiddleware:
+    """Restores the original incoming request path from query param or header
+    when Vercel internal rewrites rewrite the destination to /api/index.py.
+    """
+    def __init__(self, app):
+        self.app = app
+
+    async def __call__(self, scope, receive, send):
+        if scope.get("type") in ("http", "websocket"):
+            qs_bytes = scope.get("query_string", b"")
+            if qs_bytes:
+                qs_str = qs_bytes.decode("latin1", "replace")
+                params = urllib.parse.parse_qs(qs_str, keep_blank_values=True)
+                if "_path" in params:
+                    extracted_path = params.pop("_path")[0]
+                    if not extracted_path.startswith("/"):
+                        extracted_path = "/" + extracted_path
+                    scope["path"] = extracted_path
+                    scope["raw_path"] = extracted_path.encode("latin1")
+                    clean_items = [(k, v) for k, vals in params.items() for v in vals]
+                    scope["query_string"] = urllib.parse.urlencode(clean_items).encode("latin1")
+
+            headers = dict(scope.get("headers", []))
+            matched_path = headers.get(b"x-matched-path")
+            if matched_path and scope.get("path") in ("/api/index.py", "/api/index", "/api"):
+                decoded = matched_path.decode("latin1", "replace")
+                if "?" in decoded:
+                    decoded = decoded.split("?", 1)[0]
+                scope["path"] = decoded
+                scope["raw_path"] = decoded.encode("latin1")
+
+        await self.app(scope, receive, send)
+
+
+app.add_middleware(PathRewriteMiddleware)
 app.add_middleware(SecurityAndRateLimitMiddleware)
 
 
@@ -127,12 +163,12 @@ async def health_check():
 
 @app.get("/api/debug")
 @app.get("/debug")
-@app.get("/api/index.py")
 async def debug_endpoint(request: Request):
     return {
         "url_path": request.url.path,
         "scope_path": request.scope.get("path"),
         "raw_path": request.scope.get("raw_path", b"").decode("latin1", "replace") if isinstance(request.scope.get("raw_path"), bytes) else str(request.scope.get("raw_path")),
+        "query_params": dict(request.query_params),
         "headers": dict(request.headers),
     }
 
