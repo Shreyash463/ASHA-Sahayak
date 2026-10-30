@@ -16,7 +16,19 @@ from app.models import (
 )
 from app.i18n import get_text
 
-RULES_DIR = Path(__file__).resolve().parent.parent / "rules"
+def _resolve_rules_dir() -> Path:
+    candidates = [
+        Path(__file__).resolve().parent.parent / "rules",
+        Path.cwd() / "rules",
+        Path("/var/task/rules"),
+        Path(__file__).resolve().parent / "rules",
+    ]
+    for c in candidates:
+        if c.exists() and (c / "newborn.yaml").exists():
+            return c
+    return Path(__file__).resolve().parent.parent / "rules"
+
+RULES_DIR = _resolve_rules_dir()
 VALID_MODULES = ["newborn", "pregnancy", "child", "adult"]
 
 

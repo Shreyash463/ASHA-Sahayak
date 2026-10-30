@@ -32,8 +32,23 @@ from app.storage import storage
 from app.dashboard import get_dashboard_data
 from app.i18n import get_text, get_all_strings, LANGUAGES
 
+def _resolve_static_dir() -> Path:
+    candidates = [
+        Path(__file__).resolve().parent.parent / "static",
+        Path(__file__).resolve().parent.parent / "public",
+        Path.cwd() / "static",
+        Path.cwd() / "public",
+        Path("/var/task/static"),
+        Path("/var/task/public"),
+        Path(__file__).resolve().parent / "static",
+    ]
+    for c in candidates:
+        if c.exists() and (c / "index.html").exists():
+            return c
+    return Path(__file__).resolve().parent.parent / "static"
+
 BASE_DIR = Path(__file__).resolve().parent.parent
-STATIC_DIR = BASE_DIR / "static"
+STATIC_DIR = _resolve_static_dir()
 
 app = FastAPI(
     title="ASHA Sahayak API",
@@ -338,18 +353,40 @@ async def get_i18n(lang: str):
 if STATIC_DIR.exists():
     app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
 
-    @app.get("/")
-    async def index_page():
-        return FileResponse(str(STATIC_DIR / "index.html"))
 
-    @app.get("/dashboard")
-    async def dashboard_page():
-        return FileResponse(str(STATIC_DIR / "index.html"))
+@app.get("/")
+async def index_page():
+    html_path = STATIC_DIR / "index.html"
+    if html_path.exists():
+        return FileResponse(str(html_path))
+    for alt in [Path.cwd() / "static" / "index.html", Path.cwd() / "public" / "index.html", Path("/var/task/public/index.html")]:
+        if alt.exists():
+            return FileResponse(str(alt))
+    return JSONResponse(status_code=404, content={"detail": "index.html not found"})
 
-    @app.get("/manifest.json")
-    async def pwa_manifest():
-        return FileResponse(str(STATIC_DIR / "manifest.json"), media_type="application/manifest+json")
 
-    @app.get("/sw.js")
-    async def service_worker():
-        return FileResponse(str(STATIC_DIR / "sw.js"), media_type="application/javascript")
+@app.get("/dashboard")
+async def dashboard_page():
+    return await index_page()
+
+
+@app.get("/manifest.json")
+async def pwa_manifest():
+    m_path = STATIC_DIR / "manifest.json"
+    if m_path.exists():
+        return FileResponse(str(m_path), media_type="application/manifest+json")
+    for alt in [Path.cwd() / "static" / "manifest.json", Path.cwd() / "public" / "manifest.json", Path("/var/task/public/manifest.json")]:
+        if alt.exists():
+            return FileResponse(str(alt), media_type="application/manifest+json")
+    return JSONResponse(status_code=404, content={"detail": "manifest.json not found"})
+
+
+@app.get("/sw.js")
+async def service_worker():
+    sw_path = STATIC_DIR / "sw.js"
+    if sw_path.exists():
+        return FileResponse(str(sw_path), media_type="application/javascript")
+    for alt in [Path.cwd() / "static" / "sw.js", Path.cwd() / "public" / "sw.js", Path("/var/task/public/sw.js")]:
+        if alt.exists():
+            return FileResponse(str(alt), media_type="application/javascript")
+    return JSONResponse(status_code=404, content={"detail": "sw.js not found"})
