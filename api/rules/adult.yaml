@@ -1,0 +1,183 @@
+module: adult
+target_group:
+  en: "Adult with Fever or Cough"
+  hi: "वयस्क (बुखार या खांसी से पीड़ित)"
+  mr: "प्रौढ व्यक्ती (ताप किंवा खोकला असलेली)"
+age_range_years: [18, 120]
+
+signs:
+  - id: ad_difficulty_breathing_blue_lips
+    module: adult
+    level: URGENT
+    source: "IDSP Emergency Triage & WHO Adult Respiratory Distress Protocol"
+    verified: true
+    threshold:
+      type: "respiratory_rate"
+      comparator: ">="
+      value: 30
+      unit: "breaths_per_minute"
+    question:
+      en: "Is the patient having severe difficulty breathing, struggling for breath, or have lips/fingernails turned bluish?"
+      hi: "क्या मरीज को सांस लेने में बहुत तकलीफ हो रही है, हांफ रहा है, या होंठ और नाखून नीले पड़ गए हैं?"
+      mr: "रुग्णाला श्वास घेण्यास खूप त्रास होतोय, धाप लागून बोलता येत नाही किंवा ओठ व नखे निळसर पडली आहेत का?"
+    why_it_matters:
+      en: "Central cyanosis and severe dyspnea indicate acute respiratory failure, hypoxemia, or acute pulmonary edema."
+      hi: "होंठों का नीला पड़ना और सांस में अत्यधिक रुकावट फेफड़ों के गंभीर फेल्योर का संकेत है; तुरंत ऑक्सीजन की आवश्यकता है।"
+      mr: "ओठ निळे पडणे आणि तीव्र धाप लागणे हे रक्तातील ऑक्सिजन धोक्याच्या पातळीखाली गेल्याचे लक्षण आहे."
+
+  - id: ad_confusion_stiff_neck
+    module: adult
+    level: URGENT
+    source: "National Health Mission Adult Sepsis Screening & IDSP Red Flags"
+    verified: true
+    question:
+      en: "Is the patient disoriented, confused, talking irrelevantly, having convulsions, or has a stiff painful neck?"
+      hi: "क्या मरीज भ्रमित है, बहकी-बहकी बातें कर रहा है, दौरे पड़ रहे हैं या गर्दन में गंभीर अकड़न/दर्द है?"
+      mr: "रुग्ण गोंधळलेला आहे, असंबद्ध बोलत आहे, झटके येत आहेत किंवा मान ताठ होऊन खूप दुखत आहे का?"
+    why_it_matters:
+      en: "Altered mental status with fever points towards bacterial meningitis, encephalitis, cerebral malaria, or severe sepsis."
+      hi: "भ्रमित होना और गर्दन में अकड़न दिमागी बुखार या गंभीर सेप्सिस का संकेत है।"
+      mr: "गोंधळलेली अवस्था आणि ताठ मान हे मेंदूज्वर, सेरेब्रल मलेरिया किंवा गंभीर सेप्सिसचे लक्षण आहे."
+
+  - id: ad_chest_pain
+    module: adult
+    level: URGENT
+    source: "NHM Emergency Medical Care Guidelines (Acute Coronary Syndromes)"
+    verified: true
+    question:
+      en: "Does the patient experience heavy crushing chest pain, pressure, or tightness radiating to arm or jaw?"
+      hi: "क्या मरीज को छाती में भारी दबाव, जकड़न या असहनीय दर्द हो रहा है जो बाएं हाथ या जबड़े तक फैल रहा है?"
+      mr: "छातीत प्रचंड दाब, जडपणा किंवा तीव्र वेदना होत आहेत का, ज्या डाव्या हाताकडे किंवा जबड्याकडे पसरत आहेत?"
+    why_it_matters:
+      en: "Acute crushing chest pain is indicative of acute myocardial infarction (heart attack) or pulmonary embolism."
+      hi: "छाती का असहनीय दर्द दिल के दौरे (हार्ट अटैक) का संकेत हो सकता है; तत्काल 108 एम्बुलेंस बुलाएं।"
+      mr: "छातीत तीव्र वेदना व दाब हे हृदयविकाराचा झटका (हार्ट अटॅक) असू शकते; तत्काळ रुग्णालयात हलवा."
+
+  - id: ad_unable_fluids
+    module: adult
+    level: URGENT
+    source: "IDSP Cholera & Severe Acute Diarrhoeal Disease Protocol"
+    verified: true
+    question:
+      en: "Is the patient persistently vomiting and completely unable to keep any fluids or sips down?"
+      hi: "क्या मरीज को लगातार उल्टियां हो रही हैं और वह पानी या तरल पदार्थ का एक घूंट भी पेट में नहीं रख पा रहा है?"
+      mr: "रुग्णाला सतत उलट्या होत असून पाणी किंवा पातळ पदार्थाचा एक घोटही पोटात टिकत नाही का?"
+    why_it_matters:
+      en: "Intractable vomiting rapidly leads to severe prerenal hypovolemic failure, hypokalemia, and circulatory shock."
+      hi: "पानी भी न पच पाना शरीर को शॉक और किडनी फेल्योर में डाल सकता है।"
+      mr: "पाणीही पोटात न टिकल्याने डिहायड्रेशन होऊन अवयव निकामी होण्याचा धोका असतो."
+
+  - id: ad_very_high_fever_weakness
+    module: adult
+    level: URGENT
+    source: "National Vector Borne Disease Control Programme (NVBDCP) Severe Malaria Guidelines"
+    verified: true
+    threshold:
+      type: "temperature_celsius"
+      comparator: ">="
+      value: 39.0
+      unit: "celsius"
+    question:
+      en: "Does the patient have very high fever (39.0°C / 102.2°F or above) with profound prostration (cannot sit up or stand)?"
+      hi: "क्या मरीज को अत्यधिक तेज़ बुखार (39.0°C या अधिक) के साथ इतनी भारी कमजोरी है कि उठ या बैठ भी नहीं पा रहा है?"
+      mr: "रुग्णाला खूप जास्त ताप (३९.०° से किंवा अधिक) सोबत इतका प्रचंड अशक्तपणा आहे की उठून बसता किंवा उभे राहता येत नाही का?"
+    why_it_matters:
+      en: "High pyrexia with extreme prostration is an emergency criterion for severe falciparum malaria, dengue shock, or septicemic crisis."
+      hi: "तेज़ बुखार के साथ चरम कमजोरी सेप्टिक शॉक या गंभीर मलेरिया/डेंगू का संकेत है।"
+      mr: "जास्त ताप आणि तीव्र अशक्तपणा हा सेप्टिक शॉक, डेंग्यू किंवा गंभीर मलेरियाचा धोका दर्शवतो."
+
+  - id: ad_cough_2w
+    module: adult
+    level: REFER
+    source: "National Tuberculosis Elimination Programme (NTEP) Presumptive TB Screening"
+    verified: true
+    question:
+      en: "Has the cough been persisting for 2 weeks or longer?"
+      hi: "क्या मरीज को 2 सप्ताह या उससे अधिक समय से लगातार खांसी आ रही है?"
+      mr: "रुग्णाला २ आठवडे किंवा त्याहून अधिक काळ सतत खोकला येत आहे का?"
+    why_it_matters:
+      en: "Cough lasting over 2 weeks is the primary clinical definition of Presumptive Pulmonary Tuberculosis requiring sputum testing at the PHC."
+      hi: "2 हफ्ते से अधिक खांसी टीबी (तपेदिक) का प्राथमिक लक्षण है; बलगम की जांच अनिवार्य है।"
+      mr: "२ आठवड्यांपेक्षा जास्त काळ खोकला असणे हे क्षयरोगाचे (टीबी) मुख्य संशयित लक्षण असून थुंकी तपासणी आवश्यक आहे."
+
+  - id: ad_blood_in_sputum
+    module: adult
+    level: REFER
+    source: "NTEP Guidelines & MoHFW Chest Medicine Protocols"
+    verified: true
+    question:
+      en: "Has there been visible red blood or dark streaks of blood in the coughed-up sputum (hemoptysis)?"
+      hi: "क्या खांसने पर बलगम में लाल खून या खून के रेशे आ रहे हैं?"
+      mr: "खोकल्याच्या थुंकीतून लाल रक्त किंवा रक्ताचे डाग पडत आहेत का?"
+    why_it_matters:
+      en: "Hemoptysis signifies cavitary pulmonary tuberculosis, bronchiectasis, or other serious lower airway lesion."
+      hi: "बलगम में खून फेफड़ों में गहरे संक्रमण या टीबी का लक्षण है; तुरंत डॉक्टर से जांच कराएं।"
+      mr: "थुंकीतून रक्त पडणे फुप्फुसांचा गंभीर आजार किंवा टीबी दर्शवते; त्वरित छातीचे क्ष-किरण (X-Ray) व तपासणी हवी."
+
+  - id: ad_fever_over_3d
+    module: adult
+    level: REFER
+    source: "IDSP Syndromic Surveillance Guidelines for Prolonged Pyrexia"
+    verified: true
+    question:
+      en: "Has the fever been continuing for more than 3 continuous days without an obvious cause?"
+      hi: "क्या बुखार लगातार 3 दिनों से अधिक से बना हुआ है?"
+      mr: "ताप सलग ३ दिवसांपेक्षा जास्त काळ चालू आहे का?"
+    why_it_matters:
+      en: "Fever exceeding 3 days requires laboratory workup for malaria, typhoid, dengue, and urinary tract infection at the PHC."
+      hi: "3 दिन से अधिक बुखार में मलेरिया, टाइफाइड या डेंगू की खून जांच जरूरी है।"
+      mr: "३ दिवसांपेक्षा जास्त ताप राहिल्यास मलेरिया, विषमज्वर (टायफॉईड) किंवा डेंग्यूची रक्ततपासणी करणे गरजेचे आहे."
+
+  - id: ad_fever_chills_vector
+    module: adult
+    level: REFER
+    source: "NVBDCP Malaria and Dengue Community Screening Protocol"
+    verified: true
+    question:
+      en: "Is the fever accompanied by severe shivering chills, eye-socket pain, joint ache, or during a known local outbreak season?"
+      hi: "क्या बुखार के साथ कंपकंपी, आँखों के पीछे दर्द, जोड़ों में तेज़ दर्द है या क्षेत्र में मलेरिया/डेंगू फैला हुआ है?"
+      mr: "थंडी वाजून ताप येत आहे का, डोळ्यांच्या मागे किंवा सांध्यांमध्ये तीव्र वेदना आहेत का (हिवताप/डेंग्यूची शक्यता)?"
+    why_it_matters:
+      en: "Fever with chills and retro-orbital pain is the classic syndromic triad for vector-borne malaria and dengue requiring rapid diagnostic tests."
+      hi: "कंपकंपी के साथ बुखार मलेरिया और जोड़ों में दर्द डेंगू का लक्षण है; तुरंत खून की जांच कराएं।"
+      mr: "थंडी वाजून येणारा ताप व सांधेदुखी हे डेंग्यू किंवा मलेरियाचे लक्षण असून रक्तचाचणी आवश्यक आहे."
+
+home_care_advice:
+  en:
+    - "Adequate hydration: Drink plenty of clean boiled water, soups, coconut water, or ORS throughout the day."
+    - "Rest: Ensure complete physical bed rest in a well-ventilated, clean room."
+    - "Fever sponging: Sponge forehead and body with normal tap water to relieve high body temperature."
+    - "Cough hygiene: Cover mouth with a clean handkerchief or inner elbow when coughing to prevent spreading germs to family."
+    - "Nutritious light meals: Consume fresh warm khichdi, dal, vegetables, and hot fluids; avoid cold or stale food."
+  hi:
+    - "भरपूर पानी पिएं: दिन भर में पर्याप्त उबला हुआ पानी, सूप, नारियल पानी या ओआरएस घोल पिएं।"
+    - "पूर्ण आराम: हवादार और स्वच्छ कमरे में बिस्तर पर पूरा आराम करें।"
+    - "बुखार में पट्टी: तेज़ बुखार होने पर माथे और शरीर पर सामान्य पानी की पट्टी करें।"
+    - "खांसी में सावधानी: खांसते समय मुंह पर रुमाल रखें या कोहनी की ओट लें ताकि परिवार में संक्रमण न फैले।"
+    - "हल्का पौष्टिक भोजन: ताजी गर्म खिचड़ी, दाल और गरम पेय लें; ठंडा या बासी खाना न खाएं।"
+  mr:
+    - "भरपूर पाणी व द्रवपदार्थ प्या: दिवसभरात भरपूर उकळलेले कोमट पाणी, सूप, नारळ पाणी किंवा ओआरएसचे पाणी प्यावे."
+    - "विश्रांती: हवेशीर आणि स्वच्छ खोलीत पूर्ण शारीरिक विश्रांती घ्यावी."
+    - "तापासाठी पाण्याच्या घड्या: ताप जास्त असल्यास कपाळावर व अंगावर साध्या पाण्याच्या घड्या ठेवाव्यात."
+    - "खोकताना काळजी: खोकताना तोंडावर रुमाल धरावा किंवा कोपराचा आडोसा घ्यावा, जेणेकरून कुटुंबात संसर्ग पसरणार नाही."
+    - "हलका व ताजा आहार: गरम मऊ खिचडी, डाळ आणि सकस अन्न खावे; शिळे व थंड पदार्थ खाणे टाळावे."
+
+warning_signs:
+  en:
+    - "Difficulty breathing, gasp for breath, or blue lips"
+    - "Chest pain or heaviness"
+    - "Confusion, sleepiness, or stiff neck"
+    - "Inability to keep fluids down or extreme weakness"
+    - "Coughing up blood"
+  hi:
+    - "सांस लेने में भारी तकलीफ या होंठ नीले पड़ना"
+    - "छाती में भारीपन या दर्द"
+    - "बेहोशी, भ्रम या गर्दन में अकड़न"
+    - "पानी भी न पच पाना या अत्यधिक कमजोरी"
+    - "खांसी में खून आना"
+  mr:
+    - "श्वास घेण्यास तीव्र त्रास किंवा ओठ निळे पडणे"
+    - "छातीत दुखणे किंवा जड वाटणे"
+    - "गोंधळलेली अवस्था, मान ताठ होणे किंवा बेशुद्धी"
+    - "पाणीही पोटात न टिकणे किंवा तीव्र अशक्तपणा"
+    - "थुंकीतून रक्त पडणे"

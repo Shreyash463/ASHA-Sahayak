@@ -19,8 +19,11 @@ from app.i18n import get_text
 def _resolve_rules_dir() -> Path:
     candidates = [
         Path(__file__).resolve().parent.parent / "rules",
+        Path(__file__).resolve().parent.parent / "api" / "rules",
         Path.cwd() / "rules",
+        Path.cwd() / "api" / "rules",
         Path("/var/task/rules"),
+        Path("/var/task/api/rules"),
         Path(__file__).resolve().parent / "rules",
     ]
     for c in candidates:

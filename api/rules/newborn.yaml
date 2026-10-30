@@ -1,0 +1,229 @@
+module: newborn
+target_group:
+  en: "Newborn (0 to 59 days)"
+  hi: "नवजात शिशु (0 से 59 दिन)"
+  mr: "नवजात बाळ (० ते ५९ दिवस)"
+age_range_days: [0, 59]
+
+signs:
+  - id: nb_feeding_stop
+    module: newborn
+    level: URGENT
+    source: "HBNC Operational Guidelines, Section 3.1 & ASHA Module 6 Book 2"
+    verified: true
+    question:
+      en: "Is the baby not feeding well or has stopped sucking milk?"
+      hi: "क्या बच्चा ठीक से दूध नहीं पी रहा है या स्तनपान करना बंद कर दिया है?"
+      mr: "बाळ व्यवस्थित दूध पीत नाही किंवा स्तनपान करणे पूर्णपणे बंद केले आहे का?"
+    why_it_matters:
+      en: "Inability to feed is an early indicator of severe neonatal infection, sepsis, or critical illness."
+      hi: "दूध न पी पाना नवजात में गंभीर संक्रमण, सेप्सिस या गंभीर बीमारी का शुरुआती संकेत है।"
+      mr: "दूध न पिणे हे नवजात बाळामध्ये गंभीर संसर्ग, सेप्सिस किंवा धोकादायक आजाराचे प्रमुख लक्षण आहे."
+
+  - id: nb_convulsions
+    module: newborn
+    level: URGENT
+    source: "IMNCI Young Infant Chart & HBNC Section 3.1"
+    verified: true
+    question:
+      en: "Has the baby had convulsions, fits, or abnormal twitching movements?"
+      hi: "क्या बच्चे को दौरे, झटके या असामान्य ऐंठन आ रही है?"
+      mr: "बाळाला झटके, आकडी किंवा अंगात थरथर येत आहे का?"
+    why_it_matters:
+      en: "Convulsions indicate serious neurological involvement, meningitis, severe asphyxia, or hypoglycemia."
+      hi: "दौरे मस्तिष्क संक्रमण, मेनिन्जाइटिस, गंभीर हाइपोग्लाइसीमिया या ऑक्सीजन की कमी का संकेत हैं।"
+      mr: "झटके येणे हे मेंदूचा संसर्ग (मेनिंजायटिस), रक्तातील साखर कमी होणे किंवा गंभीर आजाराचे लक्षण आहे."
+
+  - id: nb_fast_breathing
+    module: newborn
+    level: URGENT
+    source: "HBNC Guidelines Section 3.2 & IMNCI Fast Breathing in Young Infants"
+    verified: true
+    threshold:
+      type: "respiratory_rate"
+      comparator: ">="
+      value: 60
+      unit: "breaths_per_minute"
+    question:
+      en: "Is the baby breathing fast (60 or more breaths per minute when calm)?"
+      hi: "क्या बच्चा बहुत तेज़ सांस ले रहा है (शांत होने पर भी 60 या अधिक प्रति मिनट)?"
+      mr: "बाळ खूप जलद श्वास घेत आहे का (शांत असताना ६० किंवा अधिक प्रति मिनिट)?"
+    why_it_matters:
+      en: "Fast breathing in young infants is a hallmark sign of severe pneumonia and respiratory distress."
+      hi: "नवजात में तेज़ सांस निमोनिया और श्वसन संकट का प्रमुख लक्षण है।"
+      mr: "जलद श्वास घेणे हे नवजात बाळाला गंभीर न्यूमोनिया किंवा श्वास घेण्यास अडचण असल्याचे स्पष्ट लक्षण आहे."
+
+  - id: nb_chest_indrawing
+    module: newborn
+    level: URGENT
+    source: "IMNCI Chart for Young Infants & HBNC Module 6"
+    verified: true
+    question:
+      en: "Is there severe lower chest indrawing (chest sinks in deeply when breathing in)?"
+      hi: "क्या बच्चे की छाती सांस लेते समय अंदर धंस रही है?"
+      mr: "श्वास घेताना बाळाची छाती खोल आत खेचली जात आहे का?"
+    why_it_matters:
+      en: "Severe chest indrawing means the lungs are stiff from severe pneumonia or infection, requiring urgent oxygen and antibiotics."
+      hi: "छाती का अंदर धंसना गंभीर निमोनिया दर्शाता है, जिसमें तुरंत ऑक्सीजन और अस्पताल देखभाल आवश्यक है।"
+      mr: "छाती आत खेचली जाणे म्हणजे फुप्फुसांचा गंभीर संसर्ग असून तत्काळ ऑक्सिजन व उपचारांची गरज आहे."
+
+  - id: nb_temp_abnormal
+    module: newborn
+    level: URGENT
+    source: "HBNC Temperature Protocol Section 3.3"
+    verified: true
+    threshold:
+      type: "temperature_celsius"
+      ranges:
+        - comparator: ">="
+          value: 37.5
+          label: "fever"
+        - comparator: "<"
+          value: 35.5
+          label: "hypothermia"
+    question:
+      en: "Does the baby have high fever (37.5°C / 99.5°F or above) or feel abnormally cold (hypothermia below 35.5°C / 95.9°F)?"
+      hi: "क्या बच्चे को तेज़ बुखार (37.5°C / 99.5°F या अधिक) है या शरीर असामान्य रूप से ठंडा (35.5°C से कम) पड़ गया है?"
+      mr: "बाळाला जास्त ताप (३७.५° से / ९९.५° फॅ किंवा जास्त) आहे किंवा बाळ असामान्यपणे थंड (३५.५° से पेक्षा कमी) पडले आहे का?"
+    why_it_matters:
+      en: "Both severe fever and cold body (hypothermia) in newborns signal life-threatening bacterial infections and need immediate warming and referral."
+      hi: "नवजात में बुखार या शरीर का ठंडा पड़ना गंभीर बैक्टीरियल संक्रमण दर्शाता है।"
+      mr: "नवजात बाळाचे शरीर थंड पडणे किंवा तीव्र ताप येणे हे रक्तातील गंभीर संसर्गाचे लक्षण असून तत्काळ उब व संदर्भ सेवा आवश्यक आहे."
+
+  - id: nb_lethargic_unconscious
+    module: newborn
+    level: URGENT
+    source: "HBNC Danger Signs & IMNCI Chart"
+    verified: true
+    question:
+      en: "Is the baby unusually sleepy, lethargic, unconscious, or moves only when stimulated?"
+      hi: "क्या बच्चा बहुत सुस्त, बेहोश है या जगाने और हिलाने पर ही थोड़ी हलचल करता है?"
+      mr: "बाळ खूप सुस्त, बेशुद्ध आहे किंवा हलवल्यावरच थोडी हालचाल करते का?"
+    why_it_matters:
+      en: "Depressed sensorium indicates critical systemic compromise, severe infection, or intracranial pathology."
+      hi: "बच्चे का अत्यधिक सुस्त या बेहोश होना अत्यंत गंभीर बीमारी का संकेत है।"
+      mr: "बाळ सुस्त किंवा अचेत असणे हे अत्यंत गंभीर संसर्ग किंवा आजाराचे लक्षण आहे."
+
+  - id: nb_umbilicus_red_pus
+    module: newborn
+    level: URGENT
+    source: "HBNC Section 3.4 Umbilical Cord Care"
+    verified: true
+    question:
+      en: "Is the navel (umbilicus) red with redness spreading to the abdomen skin, or draining pus?"
+      hi: "क्या नाभि लाल है, लालिमा पेट की त्वचा पर फैल रही है या मवाद आ रहा है?"
+      mr: "नाळ लाल झाली आहे, लालसरपणा पोटाच्या त्वचेवर पसरत आहे किंवा पू येत आहे का?"
+    why_it_matters:
+      en: "Omphalitis with cellulitis can rapidly advance to fatal systemic neonatal septicemia."
+      hi: "नाभि का संक्रमण तेजी से पूरे शरीर में फैलकर सेप्सिस बन सकता है।"
+      mr: "नाळेचा संसर्ग वेगाने पसरून बाळाच्या जीवाला धोका निर्माण करू शकतो (नाळेचा सेप्सिस)."
+
+  - id: nb_skin_pustules
+    module: newborn
+    level: URGENT
+    source: "IMNCI Young Infant Chart & HBNC Section 3.4"
+    verified: true
+    question:
+      en: "Does the baby have many or large pus-filled blisters (pustules) on the body?"
+      hi: "क्या बच्चे के शरीर पर बहुत सारे या बड़े-बड़े मवाद वाले फोड़े-फुंसियां हैं?"
+      mr: "बाळाच्या अंगावर अनेक किंवा मोठे पू भरलेले फोड/पुळ्या आल्या आहेत का?"
+    why_it_matters:
+      en: "Extensive skin pustules are a sign of serious bacterial staphylococcal or streptococcal infection."
+      hi: "अधिक फुंसियां गंभीर बैक्टीरियल संक्रमण दर्शाती हैं।"
+      mr: "मोठे किंवा अनेक पू भरलेले फोड हे गंभीर जिवाणू संसर्गाचे द्योतक आहेत."
+
+  - id: nb_jaundice_early_soles
+    module: newborn
+    level: URGENT
+    source: "HBNC Section 3.5 & IMNCI Neonatal Jaundice Guidelines"
+    verified: true
+    question:
+      en: "Did yellow color (jaundice) appear in the first 24 hours of life, or have palms and soles turned yellow?"
+      hi: "क्या पीलिया जन्म के पहले 24 घंटों में दिखा या हथेलियां और पैर के तलवे पीले पड़ गए हैं?"
+      mr: "कावीळ जन्माच्या पहिल्या २४ तासांत दिसली का, किंवा तळहात आणि तळपाय पिवळे पडले आहेत का?"
+    why_it_matters:
+      en: "Pathological jaundice in first 24h or reaching palms/soles carries high risk of bilirubin brain toxicity (kernicterus)."
+      hi: "पहले 24 घंटे में पीलिया या तलवों तक पीलापन दिमाग पर असर (कर्णिक्टेरस) कर सकता है।"
+      mr: "पहिल्या २४ तासांतील कावीळ किंवा तळहाता-पायापर्यंत पसरलेली कावीळ मेंदूला इजा पोहोचवू शकते."
+
+  - id: nb_mild_jaundice_face
+    module: newborn
+    level: REFER
+    source: "HBNC Section 3.5 Physiological Jaundice"
+    verified: true
+    question:
+      en: "Does the baby have mild yellowish color on face or eyes only, after day 2 of birth?"
+      hi: "क्या जन्म के 2 दिन बाद केवल चेहरे या आँखों में हल्का पीलापन है?"
+      mr: "जन्मानंतर २ दिवसांनी फक्त चेहरा किंवा डोळ्यांमध्ये हलका पिवळेपणा दिसत आहे का?"
+    why_it_matters:
+      en: "Physiological jaundice is common but must be evaluated at PHC to ensure it does not progress deeper."
+      hi: "हल्का पीलिया आम हो सकता है पर पीएचसी पर जांच जरूरी है ताकि यह बढ़े नहीं।"
+      mr: "हलकी कावीळ सामान्य असू शकते, परंतु ती वाढत नाही ना याची खात्री करण्यासाठी प्राथमिक आरोग्य केंद्रात तपासणी आवश्यक आहे."
+
+  - id: nb_sticky_eyes
+    module: newborn
+    level: REFER
+    source: "HBNC Section 3.6 Eye Care"
+    verified: true
+    question:
+      en: "Are the baby's eyes swollen, sticky with discharge, or tearing continuously?"
+      hi: "क्या बच्चे की आँखों से लगातार चिपचिपा पानी या कीचड़ निकल रहा है?"
+      mr: "बाळाच्या डोळ्यांतून सतत चिकट स्राव किंवा पू येत आहे का, डोळे चिकटले आहेत का?"
+    why_it_matters:
+      en: "Neonatal conjunctivitis (ophthalmia neonatorum) requires topical antimicrobial drops to prevent corneal ulceration."
+      hi: "आँखों का संक्रमण कॉर्निया को नुकसान पहुँचा सकता है, इसलिए डॉक्टर को दिखाना चाहिए।"
+      mr: "डोळ्यांचा संसर्ग वाढल्यास दृष्टीला हानी पोहोचू शकते, त्वरित औषधोपचारांची गरज आहे."
+
+  - id: nb_feeding_difficulty_weight
+    module: newborn
+    level: REFER
+    source: "HBNC Section 2 Low Birth Weight and Feeding Support"
+    verified: true
+    question:
+      en: "Does the mother report difficulty attaching the baby to the breast, or baby feels very small/lightweight?"
+      hi: "क्या माँ को स्तनपान कराने में कठिनाई हो रही है या बच्चा बहुत छोटा/कम वजन लग रहा है?"
+      mr: "स्तनपान करताना बाळ व्यवस्थित पकड घेत नाही किंवा बाळाचे वजन खूपच कमी वाटत आहे का?"
+    why_it_matters:
+      en: "Suboptimal feeding and low birth weight need skilled lactation support and growth monitoring at the PHC."
+      hi: "स्तनपान में कठिनाई और कम वजन में पीएचसी पर पोषण परामर्श आवश्यक है।"
+      mr: "स्तनपानातील अडचणी आणि कमी वजनाच्या बाळाला योग्य मार्गदर्शनासाठी प्राथमिक आरोग्य केंद्रात दाखवावे."
+
+home_care_advice:
+  en:
+    - "Keep the newborn warm: Use Kangaroo Mother Care (skin-to-skin contact) and dress in dry warm clothes and cap."
+    - "Exclusive breastfeeding: Feed frequently (at least 8-12 times in 24 hours), day and night. Give no water, honey, or animal milk."
+    - "Clean umbilical cord: Keep cord stump clean and dry. Do not apply oil, turmeric, cow dung, or powder."
+    - "Hand hygiene: Wash hands with soap and water before touching or feeding the baby."
+    - "Delay bathing: Do not bathe the baby in the first 7 days, especially if low birth weight."
+  hi:
+    - "शिशु को गर्म रखें: कंगारू मदर केयर (त्वचा से त्वचा का संपर्क) दें, गर्म सूखे कपड़े और टोपी पहनाएं।"
+    - "केवल स्तनपान: दिन-रात 24 घंटे में कम से कम 8-12 बार बार-बार स्तनपान कराएं। पानी, शहद या घुट्टी न दें।"
+    - "नाभि की सफाई: नाभि के ठूंठ को सूखा और साफ रखें। उस पर तेल, हल्दी, राख या कोई चूर्ण न लगाएं।"
+    - "हाथ धोना: बच्चे को छूने और दूध पिलाने से पहले साबुन-पानी से अच्छी तरह हाथ धोएं।"
+    - "नहलाने में देरी: पहले 7 दिनों तक बच्चे को न नहलाएं, खासकर यदि वजन कम हो।"
+  mr:
+    - "बाळाला उबदार ठेवा: कांगारू मदर केअर (आईच्या छातीशी त्वचेचा संपर्क) द्या, बाळाला उबदार सुती कपडे व टोपी घाला."
+    - "केवळ निव्वळ अंगावरचे दूध: २४ तासांत किमान ८ ते १२ वेळा वारंवार पाजावे. पाणी, मध, गूळ किंवा इतर दूध अजिबात देऊ नका."
+    - "नाळेची स्वच्छता: नाळ कोरडी आणि स्वच्छ ठेवा. नाळेवर हळद, तेल, राख किंवा पावडर लावू नका."
+    - "स्वच्छता: बाळाला हात लावण्यापूर्वी व स्तनपानापूर्वी साबणाने हात स्वच्छ धुवा."
+    - "बाळाला लगेच आंघोळ घालू नका: जन्मानंतर पहिले ७ दिवस बाळाला आंघोळ घालू नये, फक्त ओल्या सुती कापडाने पुसून घ्यावे."
+
+warning_signs:
+  en:
+    - "Baby stops sucking milk completely"
+    - "Baby develops convulsions or body spasms"
+    - "Baby feels very cold to touch or has high fever"
+    - "Rapid breathing or lower chest indrawing"
+    - "Redness spreading around navel or yellow palms and soles"
+  hi:
+    - "बच्चा दूध पीना बिल्कुल बंद कर दे"
+    - "बच्चे को दौरे या झटके आएं"
+    - "बच्चा अत्यधिक ठंडा लगे या तेज़ बुखार हो"
+    - "सांस तेज़ चलना या छाती अंदर धंसना"
+    - "नाभि के पास लालिमा फैलना या तलवे पीले होना"
+  mr:
+    - "बाळाने दूध पिणे पूर्णपणे बंद केले"
+    - "बाळाला झटके किंवा आकडी आली"
+    - "बाळ हाताला खूप थंड लागले किंवा खूप ताप आला"
+    - "श्वास वेगाने चालणे किंवा छाती आत ओढली जाणे"
+    - "नाळेभोवती लाली पसरणे किंवा तळहात-तळपाय पिवळे होणे"

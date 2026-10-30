@@ -36,10 +36,13 @@ def _resolve_static_dir() -> Path:
     candidates = [
         Path(__file__).resolve().parent.parent / "static",
         Path(__file__).resolve().parent.parent / "public",
+        Path(__file__).resolve().parent.parent / "api" / "static",
         Path.cwd() / "static",
         Path.cwd() / "public",
+        Path.cwd() / "api" / "static",
         Path("/var/task/static"),
         Path("/var/task/public"),
+        Path("/var/task/api/static"),
         Path(__file__).resolve().parent / "static",
     ]
     for c in candidates:
@@ -107,6 +110,7 @@ app.add_middleware(SecurityAndRateLimitMiddleware)
 # Health Check Endpoint
 # -------------------------------------------------------------
 @app.get("/healthz")
+@app.get("/api/healthz")
 async def health_check():
     """System health check and feature capability status."""
     return {
@@ -125,6 +129,7 @@ async def health_check():
 # Triage Endpoint
 # -------------------------------------------------------------
 @app.post("/api/triage", response_model=TriageResponse)
+@app.post("/triage", response_model=TriageResponse)
 async def perform_triage(req: TriageRequest):
     """Deterministic danger-sign evaluation and clinical decision support.
     Enforces Safety Invariants:
@@ -232,6 +237,7 @@ async def perform_triage(req: TriageRequest):
 # Symptom Extraction Endpoint (Free-text / Voice transcript)
 # -------------------------------------------------------------
 @app.post("/api/extract", response_model=ExtractResponse)
+@app.post("/extract", response_model=ExtractResponse)
 async def extract_symptoms(req: ExtractRequest):
     """Extract candidate danger signs from untrusted user transcript for ASHA confirmation.
     The ASHA always confirms or modifies before submission.
@@ -261,6 +267,7 @@ async def extract_symptoms(req: ExtractRequest):
 # Referral Note Regeneration Endpoint
 # -------------------------------------------------------------
 @app.post("/api/referral-note", response_model=ReferralNoteResponse)
+@app.post("/referral-note", response_model=ReferralNoteResponse)
 async def regenerate_referral_note(req: ReferralNoteRequest):
     """Regenerate referral note on language change or field edit."""
     if req.module not in VALID_MODULES:
@@ -285,6 +292,7 @@ async def regenerate_referral_note(req: ReferralNoteRequest):
 # Rules Query Endpoint
 # -------------------------------------------------------------
 @app.get("/api/rules/{module}")
+@app.get("/rules/{module}")
 async def get_module_rules(module: str, lang: str = Query("mr")):
     """Get questions and signs for module in requested language."""
     if module not in VALID_MODULES:
@@ -324,6 +332,8 @@ async def get_module_rules(module: str, lang: str = Query("mr")):
 # Dashboard Analytics Endpoint
 # -------------------------------------------------------------
 @app.get("/api/dashboard", response_model=DashboardAggregates)
+@app.get("/api/dashboard-data", response_model=DashboardAggregates)
+@app.get("/dashboard-data", response_model=DashboardAggregates)
 async def get_dashboard(
     district: Optional[str] = None,
     block: Optional[str] = None,
@@ -342,51 +352,80 @@ async def get_dashboard(
 # UI Strings / Localization Endpoint
 # -------------------------------------------------------------
 @app.get("/api/i18n/{lang}")
+@app.get("/i18n/{lang}")
 async def get_i18n(lang: str):
     """Get UI string bundle for frontend."""
     return get_all_strings(lang)
 
 
 # -------------------------------------------------------------
-# Static Frontend Serving
+# Static Frontend Serving & Fallbacks
 # -------------------------------------------------------------
 if STATIC_DIR.exists():
     app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
 
 
+def _serve_static_file(rel_path: str, media_type: str) -> Response:
+    """Safely locate and return static file contents across environments."""
+    search_dirs = [
+        STATIC_DIR,
+        Path.cwd() / "public",
+        Path.cwd() / "static",
+        Path.cwd() / "api" / "static",
+        Path(__file__).resolve().parent.parent / "public",
+        Path(__file__).resolve().parent.parent / "static",
+        Path(__file__).resolve().parent.parent / "api" / "static",
+        Path("/var/task/public"),
+        Path("/var/task/static"),
+        Path("/var/task/api/static"),
+    ]
+    for d in search_dirs:
+        candidate = d / rel_path
+        if candidate.exists() and candidate.is_file():
+            return Response(content=candidate.read_bytes(), media_type=media_type)
+    return JSONResponse(status_code=404, content={"detail": f"{rel_path} not found"})
+
+
 @app.get("/")
 async def index_page():
-    html_path = STATIC_DIR / "index.html"
-    if html_path.exists():
-        return FileResponse(str(html_path))
-    for alt in [Path.cwd() / "static" / "index.html", Path.cwd() / "public" / "index.html", Path("/var/task/public/index.html")]:
-        if alt.exists():
-            return FileResponse(str(alt))
-    return JSONResponse(status_code=404, content={"detail": "index.html not found"})
+    return _serve_static_file("index.html", "text/html; charset=utf-8")
 
 
 @app.get("/dashboard")
 async def dashboard_page():
-    return await index_page()
+    return _serve_static_file("index.html", "text/html; charset=utf-8")
 
 
 @app.get("/manifest.json")
 async def pwa_manifest():
-    m_path = STATIC_DIR / "manifest.json"
-    if m_path.exists():
-        return FileResponse(str(m_path), media_type="application/manifest+json")
-    for alt in [Path.cwd() / "static" / "manifest.json", Path.cwd() / "public" / "manifest.json", Path("/var/task/public/manifest.json")]:
-        if alt.exists():
-            return FileResponse(str(alt), media_type="application/manifest+json")
-    return JSONResponse(status_code=404, content={"detail": "manifest.json not found"})
+    return _serve_static_file("manifest.json", "application/manifest+json")
 
 
 @app.get("/sw.js")
 async def service_worker():
-    sw_path = STATIC_DIR / "sw.js"
-    if sw_path.exists():
-        return FileResponse(str(sw_path), media_type="application/javascript")
-    for alt in [Path.cwd() / "static" / "sw.js", Path.cwd() / "public" / "sw.js", Path("/var/task/public/sw.js")]:
-        if alt.exists():
-            return FileResponse(str(alt), media_type="application/javascript")
-    return JSONResponse(status_code=404, content={"detail": "sw.js not found"})
+    return _serve_static_file("sw.js", "application/javascript")
+
+
+@app.get("/styles.css")
+@app.get("/static/styles.css")
+async def static_styles():
+    return _serve_static_file("styles.css", "text/css")
+
+
+@app.get("/app.js")
+@app.get("/static/app.js")
+async def static_app():
+    return _serve_static_file("app.js", "application/javascript")
+
+
+@app.get("/rules_engine.js")
+@app.get("/static/rules_engine.js")
+async def static_rules_engine():
+    return _serve_static_file("rules_engine.js", "application/javascript")
+
+
+@app.get("/icons/{filename}")
+@app.get("/static/icons/{filename}")
+async def static_icon(filename: str):
+    media = "image/svg+xml" if filename.endswith(".svg") else "image/png"
+    return _serve_static_file(f"icons/{filename}", media)

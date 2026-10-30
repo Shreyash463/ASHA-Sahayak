@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#0d9488">
+  <meta name="description" content="Frontline Clinical Decision Support for Village Health Workers">
+  <title>ASHA Sahayak - आशा सहाय्यक</title>
+  
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" type="image/svg+xml" href="/static/icons/icon.svg">
+  <link rel="apple-touch-icon" href="/static/icons/icon-192.png">
+
+  <!-- Google Fonts: Noto Sans & Noto Sans Devanagari -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700;800&family=Noto+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+
+  <!-- App Header -->
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="brand-wrap">
+        <img src="/static/icons/icon.svg" alt="ASHA Sahayak Logo" class="app-logo">
+        <div>
+          <h1 class="app-title-h1" id="ui-app-title">आशा सहाय्यक</h1>
+        </div>
+      </div>
+      <div class="lang-selector-wrap">
+        <select id="lang-select" aria-label="Select Language">
+          <option value="mr" selected>मराठी (MR)</option>
+          <option value="hi">हिंदी (HI)</option>
+          <option value="en">English (EN)</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <!-- Top Navigation Tabs -->
+  <nav class="app-nav">
+    <div class="nav-inner">
+      <button class="nav-tab-btn active" id="tab-btn-triage" data-tab="view-triage">तपासणी (Triage)</button>
+      <button class="nav-tab-btn" id="tab-btn-how" data-tab="view-how">कसे कार्य करते (Info)</button>
+      <button class="nav-tab-btn" id="tab-btn-privacy" data-tab="view-privacy">गोपनीयता (Privacy)</button>
+      <button class="nav-tab-btn" id="tab-btn-dashboard" data-tab="view-dashboard">डॅशबोर्ड (District)</button>
+    </div>
+  </nav>
+
+  <!-- Main Content Views -->
+  <main class="app-main">
+
+    <!-- Offline Notification Banner -->
+    <div id="offline-alert" class="offline-banner hidden">
+      <span>⚡</span>
+      <span id="offline-msg">ऑफलाइन मोड: इंटरनेट उपलब्ध नाही. स्थानिक नियमावलीनुसार तपासणी सुरू आहे.</span>
+    </div>
+
+    <!-- VIEW 1: TRIAGE QUESTIONNAIRE WORKFLOW -->
+    <div id="view-triage" class="tab-view">
+
+      <!-- STEP 1: Select Patient Category -->
+      <section id="step-module-select" class="card">
+        <h2 style="font-size:1.15rem; font-weight:700; color:var(--primary-dark);" id="ui-lbl-select-patient">
+          रुग्णाचा प्रकार निवडा (Select Patient Type)
+        </h2>
+        <p style="font-size:0.85rem; color:var(--text-muted); margin-top:2px;" id="ui-lbl-select-sub">
+          राष्ट्रीय आरोग्य अभियान (NHM) नियमावलीवर आधारित
+        </p>
+
+        <div class="module-grid">
+          <button class="module-card-btn" data-module="newborn">
+            <span class="module-icon">👶</span>
+            <div class="module-label-wrap">
+              <h3 id="mod-name-nb">नवजात बाळ (Newborn)</h3>
+              <p id="mod-sub-nb">० ते ५९ दिवस (0-59 Days)</p>
+            </div>
+          </button>
+
+          <button class="module-card-btn" data-module="pregnancy">
+            <span class="module-icon">🤰</span>
+            <div class="module-label-wrap">
+              <h3 id="mod-name-preg">गर्भवती व बाळंत स्त्री</h3>
+              <p id="mod-sub-preg">प्रसूतीपूर्व व प्रसूतीनंतर (Pregnancy & Postpartum)</p>
+            </div>
+          </button>
+
+          <button class="module-card-btn" data-module="child">
+            <span class="module-icon">🧒</span>
+            <div class="module-label-wrap">
+              <h3 id="mod-name-ch">लहान मूल (Child)</h3>
+              <p id="mod-sub-ch">२ महिने ते ५ वर्षे (2m - 5y IMNCI)</p>
+            </div>
+          </button>
+
+          <button class="module-card-btn" data-module="adult">
+            <span class="module-icon">🩺</span>
+            <div class="module-label-wrap">
+              <h3 id="mod-name-ad">ताप किंवा खोकला असलेला प्रौढ</h3>
+              <p id="mod-sub-ad">वयस्क व्यक्ती (Adult with Fever/Cough)</p>
+            </div>
+          </button>
+        </div>
+      </section>
+
+      <!-- STEP 2: Patient Demographics & Voice / Vitals Entry -->
+      <section id="step-demographics" class="card hidden">
+        <button class="btn-nav" id="btn-back-to-modules" style="margin-bottom:12px;">← मागे (Back)</button>
+        <h2 style="font-size:1.15rem; font-weight:700; color:var(--primary-dark);" id="ui-lbl-basic-details">
+          प्राथमिक माहिती व लक्षणे (Basic Details & Symptoms)
+        </h2>
+
+        <!-- Coarse Geographic Location (No GPS, No PII) -->
+        <div class="form-group" style="margin-top:12px;">
+          <label for="select-district" id="ui-lbl-district">जिल्हा (District):</label>
+          <select id="select-district" class="form-control">
+            <option value="Gadchiroli" selected>Gadchiroli (गडचिरोली)</option>
+            <option value="Nandurbar">Nandurbar (नंदुरबार)</option>
+            <option value="Pune">Pune (पुणे)</option>
+            <option value="Nashik">Nashik (नाशिक)</option>
+            <option value="Amravati">Amravati (अमरावती)</option>
+            <option value="Thane">Thane (ठाणे)</option>
+            <option value="Satara">Satara (सातारा)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="select-block" id="ui-lbl-block">तालुका / ब्लॉक (Block):</label>
+          <select id="select-block" class="form-control">
+            <!-- Dynamically populated -->
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="input-age" id="ui-lbl-age">वय (Age):</label>
+          <div style="display:flex; gap:8px;">
+            <input type="number" id="input-age" class="form-control" placeholder="उदा. 12" min="0" max="120" style="flex:2;">
+            <span id="lbl-age-unit" style="flex:1; display:flex; align-items:center; font-weight:600; font-size:0.9rem; color:var(--text-muted);">
+              दिवस (Days)
+            </span>
+          </div>
+        </div>
+
+        <!-- Optional Voice / Free-text Symptom Extractor -->
+        <div class="voice-box">
+          <label style="font-weight:700; color:var(--primary-dark); font-size:0.95rem; display:block;" id="ui-lbl-voice-title">
+            🎙️ आपल्या शब्दात सांगा (Tell in Own Words)
+          </label>
+          <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:6px;" id="ui-lbl-voice-sub">
+            आई किंवा रुग्ण जे सांगत आहेत ते येथे बोला किंवा लिहा (AI फक्त खात्री करण्यासाठी सुचवेल):
+          </p>
+          <div class="voice-input-row">
+            <textarea id="text-transcript" class="form-control" rows="2" placeholder="उदा. बाळाला ताप आहे आणि दूध पीत नाही..."></textarea>
+            <button id="btn-mic" class="voice-mic-btn" title="Speak in Marathi/Hindi/English" aria-label="Microphone">🎙️</button>
+          </div>
+          <button id="btn-extract-symptoms" class="btn-nav btn-nav-primary" style="margin-top:8px; width:100%;">
+            ✨ लक्षणे तपासा (Extract Symptoms)
+          </button>
+          <p id="extract-status" style="font-size:0.8rem; color:var(--primary-dark); font-weight:600; margin-top:4px; display:none;"></p>
+        </div>
+
+        <!-- Breath Rate Counter Tool -->
+        <div class="breath-counter-box">
+          <label style="font-weight:700; font-size:0.95rem; color:var(--text-main);" id="ui-lbl-counter-title">
+            ⏱️ श्वास मोजण्याचे साधन (Breath Counter)
+          </label>
+          <div class="breath-display">
+            <span id="counter-bpm">0</span> <span style="font-size:1.1rem; font-weight:600;">प्रति मिनिट</span>
+          </div>
+          <p id="counter-timer" style="font-size:0.85rem; color:var(--text-muted); margin-bottom:8px;">
+            वेळ: 30 सेकंद (Time: 30s)
+          </p>
+          <button id="btn-breath-tap" class="breath-tap-btn">
+            👆 श्वास घेतल्यावर टॅप करा (TAP)
+          </button>
+          <div style="display:flex; justify-content:center; gap:8px; margin-top:6px;">
+            <button id="btn-breath-reset" class="btn-nav" style="font-size:0.8rem; padding:6px 12px; min-height:36px;">
+              रीसेट (Reset)
+            </button>
+          </div>
+        </div>
+
+        <!-- Objective Vitals Inputs -->
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:14px;">
+          <div class="form-group">
+            <label for="input-rr" style="font-size:0.85rem;">श्वसन गती (RR/min):</label>
+            <input type="number" id="input-rr" class="form-control" placeholder="उदा. 48">
+          </div>
+          <div class="form-group">
+            <label for="input-temp" style="font-size:0.85rem;">तापमान (°C):</label>
+            <input type="number" step="0.1" id="input-temp" class="form-control" placeholder="उदा. 37.2">
+          </div>
+        </div>
+
+        <button id="btn-proceed-to-questions" class="btn-nav btn-nav-primary" style="width:100%; min-height:52px; font-size:1.1rem; margin-top:10px;">
+          धोक्याची लक्षणे तपासा (Start Questions) →
+        </button>
+      </section>
+
+      <!-- STEP 3: Question Card (Step-by-Step) -->
+      <section id="step-questions" class="card hidden">
+        <div class="progress-bar-wrap">
+          <div id="question-progress-fill" class="progress-bar-fill"></div>
+        </div>
+
+        <div class="step-indicator">
+          <span id="question-step-text">प्रश्न 1 / 12</span>
+          <span id="question-module-badge" style="color:var(--primary); font-weight:700;">Newborn</span>
+        </div>
+
+        <h2 id="current-question-text" class="question-text">
+          बाळ व्यवस्थित दूध पीत नाही किंवा स्तनपान करणे बंद केले आहे का?
+        </h2>
+
+        <div id="current-question-why" class="question-why">
+          दूध न पिणे हे नवजात बाळामध्ये गंभीर संसर्ग, सेप्सिस किंवा धोकादायक आजाराचे प्रमुख लक्षण आहे.
+        </div>
+
+        <!-- Big Touch Targets -->
+        <div class="answers-grid">
+          <button class="btn-answer btn-yes" id="btn-ans-yes" data-value="yes">
+            <span>🔴</span> <span id="lbl-btn-yes">होय (YES)</span>
+          </button>
+          <button class="btn-answer btn-no" id="btn-ans-no" data-value="no">
+            <span>🟢</span> <span id="lbl-btn-no">नाही (NO)</span>
+          </button>
+          <button class="btn-answer btn-dont-know" id="btn-ans-dk" data-value="dont_know">
+            <span>🟡</span> <span id="lbl-btn-dk">माहित नाही (DON'T KNOW)</span>
+          </button>
+        </div>
+
+        <div class="question-nav-row">
+          <button class="btn-nav" id="btn-prev-q">← मागे (Back)</button>
+          <button class="btn-nav btn-nav-primary" id="btn-next-q">पुढील प्रश्न (Next) →</button>
+        </div>
+      </section>
+
+      <!-- STEP 4: Triage Result & Referral Handover -->
+      <section id="step-results" class="card hidden">
+        <!-- Full-Width Severity Color Banner -->
+        <div id="result-color-banner" class="result-banner URGENT_REFERRAL">
+          <div class="result-badge" id="result-badge-text">
+            <span>⚠️</span> <span>URGENT REFERRAL</span>
+          </div>
+          <div class="result-title" id="result-title-text">
+            तात्काळ संदर्भ सेवा (तातडीने हलवा)
+          </div>
+        </div>
+
+        <!-- Call ANM / 108 Emergency Dial Button -->
+        <a id="btn-emergency-call" href="tel:108" class="btn-action btn-call" style="text-decoration:none; margin-bottom:14px;">
+          <span>📞</span> <span id="lbl-call-anm">एएनएम / १०८ रुग्णवाहिकेला कॉल करा</span>
+        </a>
+
+        <!-- Triggered Danger Signs Section -->
+        <h3 class="result-section-title">
+          <span>🚨</span> <span id="ui-sec-danger-signs">आढळलेली धोक्याची लक्षणे:</span>
+        </h3>
+        <ul id="result-signs-list" class="result-list">
+          <!-- Populated dynamically -->
+        </ul>
+
+        <!-- Clinical Reasons Section -->
+        <h3 class="result-section-title">
+          <span>📋</span> <span id="ui-sec-reasons">वैद्यकीय कारणे (Clinical Reasons):</span>
+        </h3>
+        <ul id="result-reasons-list" class="result-list">
+          <!-- Populated dynamically -->
+        </ul>
+
+        <!-- Protocol Home Care Advice -->
+        <h3 class="result-section-title">
+          <span>🩺</span> <span id="ui-sec-advice">प्रोटोकॉलनुसार काळजी व सल्ला:</span>
+        </h3>
+        <ul id="result-advice-list" class="result-list">
+          <!-- Populated dynamically -->
+        </ul>
+
+        <!-- Warning Signs to Return Immediately -->
+        <h3 class="result-section-title">
+          <span>⚠️</span> <span id="ui-sec-warnings">हे दिसल्यास त्वरित परत या:</span>
+        </h3>
+        <ul id="result-warnings-list" class="result-list">
+          <!-- Populated dynamically -->
+        </ul>
+
+        <!-- AI Plain Language Explanation Card -->
+        <div style="background:#f0fdf4; border:1px solid #86efac; border-radius:var(--radius-sm); padding:12px; margin:14px 0;">
+          <h4 style="font-size:0.9rem; font-weight:700; color:#166534; margin-bottom:4px;">
+            💡 सारांश व विश्लेषण (Guidance Summary):
+          </h4>
+          <p id="result-ai-explanation" style="font-size:0.9rem; color:#14532d; line-height:1.4;">
+            --
+          </p>
+        </div>
+
+        <!-- Referral Note Actions -->
+        <h3 class="result-section-title">
+          <span>📝</span> <span id="ui-sec-referral-slip">वैद्यकीय अधिकाऱ्यांसाठी संदर्भ चिठ्ठी:</span>
+        </h3>
+        <div id="referral-note-content" class="referral-slip-box"></div>
+
+        <div class="referral-actions-grid">
+          <button class="btn-action btn-copy" id="btn-copy-note">
+            <span>📋</span> <span id="lbl-btn-copy">कॉपी करा</span>
+          </button>
+          <button class="btn-action btn-whatsapp" id="btn-share-whatsapp">
+            <span>💬</span> <span>व्हॉट्सॲप</span>
+          </button>
+          <button class="btn-action btn-print" id="btn-print-note">
+            <span>🖨️</span> <span>प्रिंट / PDF</span>
+          </button>
+          <button class="btn-action btn-listen" id="btn-tts-listen">
+            <span>🔊</span> <span id="lbl-btn-listen">ऐका (Listen)</span>
+          </button>
+        </div>
+
+        <!-- Disclaimer -->
+        <div class="disclaimer-box" id="result-disclaimer">
+          हे ॲप केवळ निर्णय साहाय्यासाठी आहे, हा डॉक्टरांचा अंतिम निदान नाही. शंका असल्यास त्वरित आपल्या एएनएम (ANM) किंवा प्राथमिक आरोग्य केंद्राशी (PHC) संपर्क साधा.
+        </div>
+
+        <!-- Restart Button -->
+        <button id="btn-restart-triage" class="btn-nav btn-nav-primary" style="width:100%; min-height:52px; margin-top:16px;">
+          🔄 नवीन रुग्ण तपासणी (New Patient)
+        </button>
+      </section>
+
+    </div>
+
+    <!-- VIEW 2: HOW THIS WORKS (Transparency & Safety Principles) -->
+    <div id="view-how" class="tab-view hidden">
+      <section class="card">
+        <h2 style="font-size:1.2rem; font-weight:800; color:var(--primary-dark); margin-bottom:12px;">
+          कसे कार्य करते? (How ASHA Sahayak Works)
+        </h2>
+
+        <div style="font-size:0.95rem; line-height:1.6; color:var(--text-main);">
+          <p style="margin-bottom:12px;">
+            <strong>१. नियम प्रथम, कृत्रिम बुद्धिमत्ता (AI) नियंत्रणात:</strong><br>
+            धोक्याच्या लक्षणांची वर्गवारी (Urgent, Refer, Home Care) ही १००% निश्चित (Deterministic) वैद्यकीय नियमांनुसार ठरवली जाते. AI मॉडेल कधीही रुग्णाचा धोका कमी करू शकत नाही किंवा परस्पर गंभीर संदर्भ सेवा ठरवू शकत नाही.
+          </p>
+          <p style="margin-bottom:12px;">
+            <strong>२. शासकीय मार्गदर्शक तत्त्वांचे पालन:</strong><br>
+            सर्व निकष राष्ट्रीय आरोग्य अभियान (NHM Modules 6 & 7), गृहभेटी नवजात काळजी (HBNC), आणि IMNCI मार्गदर्शक तत्त्वांशी पूर्णपणे सुसंगत आहेत.
+          </p>
+          <p style="margin-bottom:12px;">
+            <strong>३. इंटरनेटशिवाय १००% कार्यक्षम:</strong><br>
+            ग्रामीण व दुर्गम भागातील नेटवर्क अडचणी लक्षात घेऊन हे ॲप ऑफलाइन PWA म्हणून कार्य करते. तपासणीचे निकाल थेट फोनवरच मोजले जातात.
+          </p>
+          <p style="margin-bottom:12px;">
+            <strong>४. 'माहित नाही' या उत्तराची सुरक्षा:</strong><br>
+            गंभीर धोक्याच्या लक्षणावर आशा सेविकेला शंका असल्यास ॲप सुरक्षिततेसाठी रुग्णास किमान प्राथमिक आरोग्य केंद्रात दाखवण्याचा (VISIT_PHC) सल्ला देते.
+          </p>
+          <p>
+            <strong>५. वैद्यकीय निदान नाही:</strong><br>
+            हे ॲप आजाराचे नाव किंवा औषधांचे डोस सांगत नाही; हे केवळ आशा सेविकेच्या निर्णय क्षमतेला बळकट करते.
+          </p>
+        </div>
+      </section>
+    </div>
+
+    <!-- VIEW 3: PRIVACY & DATA POLICY -->
+    <div id="view-privacy" class="tab-view hidden">
+      <section class="card">
+        <h2 style="font-size:1.2rem; font-weight:800; color:var(--primary-dark); margin-bottom:12px;">
+          गोपनीयता धोरण (Privacy & Zero-PII Policy)
+        </h2>
+
+        <div style="font-size:0.95rem; line-height:1.6; color:var(--text-main);">
+          <div style="background:#f0fdf4; border-left:4px solid var(--primary); padding:10px 12px; margin-bottom:12px; border-radius:4px;">
+            <strong>🔒 शून्य वैयक्तिक ओळख (Zero-PII Storage):</strong><br>
+            हे ॲप रुग्णाचे नाव, फोन नंबर, पत्ता किंवा अचूक GPS स्थान विचारत नाही आणि सेव्ह करत नाही.
+          </div>
+
+          <p style="margin-bottom:10px;"><strong>काय सेव्ह केले जाते:</strong></p>
+          <ul style="padding-left:20px; margin-bottom:12px;">
+            <li>अनामित केस संदर्भ आयडी (उदा. ASHA-9B3E12F8)</li>
+            <li>वय गट आणि तपासणीची वेळ</li>
+            <li>नोंदवलेली धोक्याची लक्षणे व मोजलेली श्वसन गती/तापमान</li>
+            <li>फक्त तालुका व जिल्ह्याचे नाव (साथरोग नियंत्रणासाठी)</li>
+          </ul>
+
+          <p style="margin-bottom:10px;"><strong>काय सेव्ह केले जात नाही:</strong></p>
+          <ul style="padding-left:20px; margin-bottom:12px;">
+            <li>कोणतेही नाव किंवा आधार क्रमांक</li>
+            <li>कोणताही फोन नंबर</li>
+            <li>आवाजाचे ऑडिओ रेकॉर्डिंग (लक्षणे तपासल्यानंतर ऑडिओ त्वरित नष्ट केला जातो)</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+
+    <!-- VIEW 4: DISTRICT EPIDEMIOLOGICAL DASHBOARD -->
+    <div id="view-dashboard" class="tab-view hidden">
+      <section class="card">
+        <!-- Simulated Data Notice Banner -->
+        <div id="dashboard-sim-banner" class="demo-banner">
+          <div>
+            <span>⚠️</span> <strong>प्रात्यक्षिक सिम्युलेटेड डेटा (SIMULATED DEMO DATA)</strong>
+            <p style="font-size:0.75rem; font-weight:400; margin-top:2px;">
+              मूल्यमापनासाठी प्रातिनिधिक डेटा दाखवला आहे.
+            </p>
+          </div>
+          <label style="font-size:0.8rem; display:flex; align-items:center; gap:4px; cursor:pointer;">
+            <input type="checkbox" id="chk-toggle-simulated" checked> सिम्युलेटेड दाखवा
+          </label>
+        </div>
+
+        <h2 style="font-size:1.2rem; font-weight:800; color:var(--primary-dark); margin-bottom:10px;">
+          जिल्हा आरोग्य विश्लेषक डॅशबोर्ड (District Dashboard)
+        </h2>
+
+        <!-- Filters -->
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:14px;">
+          <div>
+            <label style="font-size:0.8rem; font-weight:600;">जिल्हा निवडा:</label>
+            <select id="dash-filter-dist" class="form-control" style="min-height:40px; padding:6px 10px; font-size:0.9rem;">
+              <option value="">सर्व जिल्हे (All)</option>
+              <option value="Gadchiroli">Gadchiroli (गडचिरोली)</option>
+              <option value="Nandurbar">Nandurbar (नंदुरबार)</option>
+              <option value="Pune">Pune (पुणे)</option>
+              <option value="Nashik">Nashik (नाशिक)</option>
+              <option value="Amravati">Amravati (अमरावती)</option>
+              <option value="Thane">Thane (ठाणे)</option>
+              <option value="Satara">Satara (सातारा)</option>
+            </select>
+          </div>
+          <div>
+            <label style="font-size:0.8rem; font-weight:600;">ब्लॉक / तालुका:</label>
+            <select id="dash-filter-block" class="form-control" style="min-height:40px; padding:6px 10px; font-size:0.9rem;">
+              <option value="">सर्व ब्लॉक्स (All)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Outbreak Cluster Alerts -->
+        <div id="dash-cluster-alerts-container" style="margin-bottom:16px;">
+          <h3 style="font-size:1rem; font-weight:700; color:#991b1b; margin-bottom:6px; display:flex; align-items:center; gap:6px;">
+            <span>🚨</span> <span>साथरोग क्लस्टर अलर्ट (Outbreak Alerts):</span>
+          </h3>
+          <div id="dash-alerts-list">
+            <!-- Populated dynamically -->
+          </div>
+        </div>
+
+        <!-- Aggregates Grid -->
+        <div class="stat-grid">
+          <div class="stat-card">
+            <div class="stat-val" id="stat-total-cases">0</div>
+            <div class="stat-lbl">एकूण तपासण्या (Total Triage)</div>
+          </div>
+          <div class="stat-card" style="border-bottom:3px solid var(--urgent-red);">
+            <div class="stat-val" style="color:var(--urgent-red);" id="stat-urgent-cases">0</div>
+            <div class="stat-lbl">तात्काळ संदर्भ (Urgent Referral)</div>
+          </div>
+          <div class="stat-card" style="border-bottom:3px solid var(--refer-amber);">
+            <div class="stat-val" style="color:var(--refer-amber);" id="stat-visit-phc">0</div>
+            <div class="stat-lbl">PHC तपासणी (Visit PHC)</div>
+          </div>
+          <div class="stat-card" style="border-bottom:3px solid var(--home-green);">
+            <div class="stat-val" style="color:var(--home-green);" id="stat-home-care">0</div>
+            <div class="stat-lbl">घरी काळजी (Home Care)</div>
+          </div>
+        </div>
+
+        <!-- Module Distribution -->
+        <h3 style="font-size:0.95rem; font-weight:700; margin:14px 0 6px;">रुग्ण गट विभागणी (By Module):</h3>
+        <div id="dash-modules-bar" style="background:#f1f5f9; padding:10px; border-radius:var(--radius-sm); font-size:0.85rem;">
+          <!-- Dynamically populated -->
+        </div>
+
+        <!-- Top Triggered Danger Signs -->
+        <h3 style="font-size:0.95rem; font-weight:700; margin:14px 0 6px;">प्रमुख आढळलेली धोक्याची लक्षणे (Top Signs):</h3>
+        <ul id="dash-top-signs-list" class="result-list">
+          <!-- Dynamically populated -->
+        </ul>
+      </section>
+    </div>
+
+  </main>
+
+  <!-- PWA & Client-Side Scripts -->
+  <script src="/static/rules_engine.js"></script>
+  <script src="/static/app.js"></script>
+</body>
+</html>
