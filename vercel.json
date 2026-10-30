@@ -8,15 +8,15 @@
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "/api/index.py"
+      "destination": "/api/index.py?_path=/api/$1"
     },
     {
       "source": "/api",
-      "destination": "/api/index.py"
+      "destination": "/api/index.py?_path=/api"
     },
     {
       "source": "/healthz",
-      "destination": "/api/index.py"
+      "destination": "/api/index.py?_path=/healthz"
     },
     {
       "source": "/dashboard",
