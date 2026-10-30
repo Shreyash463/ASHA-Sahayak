@@ -125,6 +125,18 @@ async def health_check():
     }
 
 
+@app.get("/api/debug")
+@app.get("/debug")
+@app.get("/api/index.py")
+async def debug_endpoint(request: Request):
+    return {
+        "url_path": request.url.path,
+        "scope_path": request.scope.get("path"),
+        "raw_path": request.scope.get("raw_path", b"").decode("latin1", "replace") if isinstance(request.scope.get("raw_path"), bytes) else str(request.scope.get("raw_path")),
+        "headers": dict(request.headers),
+    }
+
+
 # -------------------------------------------------------------
 # Triage Endpoint
 # -------------------------------------------------------------
