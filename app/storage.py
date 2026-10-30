@@ -47,7 +47,13 @@ class StorageBackend(ABC):
 
 class SQLiteStorage(StorageBackend):
     def __init__(self, db_path: Optional[Path] = None):
-        self.db_path = str(db_path or DEFAULT_DB_PATH)
+        env_path = os.getenv("SQLITE_DB_PATH")
+        if env_path:
+            self.db_path = env_path
+        elif os.getenv("VERCEL"):
+            self.db_path = "/tmp/asha_sahayak.sqlite"
+        else:
+            self.db_path = str(db_path or DEFAULT_DB_PATH)
         self._init_db()
 
     def _get_connection(self) -> sqlite3.Connection:
@@ -81,6 +87,17 @@ class SQLiteStorage(StorageBackend):
             conn.execute("CREATE INDEX IF NOT EXISTS idx_cases_district_block ON cases(district, block)")
             conn.execute("CREATE INDEX IF NOT EXISTS idx_cases_source ON cases(source)")
             conn.commit()
+
+        # If running on Vercel ephemeral storage and database is empty, seed initial simulated data
+        if os.getenv("VERCEL"):
+            try:
+                with self._get_connection() as conn:
+                    cur = conn.execute("SELECT COUNT(*) FROM cases")
+                    if cur.fetchone()[0] == 0:
+                        from scripts.seed_simulated_data import generate_simulated_dataset
+                        generate_simulated_dataset(120)
+            except Exception as e:
+                logger.warning(f"Auto-seed on Vercel skipped: {e}")
 
     def save_case(self, record: TriageRecord) -> bool:
         try:
